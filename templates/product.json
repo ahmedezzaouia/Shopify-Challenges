@@ -146,9 +146,9 @@
         "padding_bottom": 28
       }
     },
-    "testimonials": {
-      "type": "testimonials"
+    "test": {
+      "type": "test-section"
     }
   },
-  "order": ["main", "image-with-text", "multicolumn", "product-recommendations"]
+  "order": ["main", "image-with-text", "multicolumn", "product-recommendations","test"]
 }
