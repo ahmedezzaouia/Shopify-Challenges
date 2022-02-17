@@ -12,8 +12,7 @@
         },
         "title": {
           "type": "title",
-          "settings": {
-          }
+          "settings": {}
         },
         "caption": {
           "type": "text",
@@ -24,28 +23,23 @@
         },
         "price": {
           "type": "price",
-          "settings": {
-          }
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
-          "settings": {
-          }
+          "settings": {}
         },
         "quantity_selector": {
           "type": "quantity_selector",
-          "settings": {
-          }
+          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
-          "settings": {
-          }
+          "settings": {}
         },
         "description": {
           "type": "description",
-          "settings": {
-          }
+          "settings": {}
         },
         "collapsible-row-0": {
           "type": "collapsible_tab",
@@ -77,8 +71,7 @@
         },
         "share": {
           "type": "share",
-          "settings": {
-          }
+          "settings": {}
         }
       },
       "block_order": [
@@ -106,19 +99,14 @@
       "blocks": {
         "image-with-text-0": {
           "type": "heading",
-          "settings": {
-          }
+          "settings": {}
         },
         "image-with-text-1": {
           "type": "text",
-          "settings": {
-          }
+          "settings": {}
         }
       },
-      "block_order": [
-        "image-with-text-0",
-        "image-with-text-1"
-      ],
+      "block_order": ["image-with-text-0", "image-with-text-1"],
       "settings": {
         "height": "small",
         "layout": "text_first",
@@ -143,10 +131,7 @@
           }
         }
       },
-      "block_order": [
-        "column-0",
-        "column-1"
-      ],
+      "block_order": ["column-0", "column-1"],
       "settings": {
         "title": "",
         "background_style": "none",
@@ -160,12 +145,10 @@
         "show_secondary_image": true,
         "padding_bottom": 28
       }
+    },
+    "testimonials": {
+      "type": "testimonials"
     }
   },
-  "order": [
-    "main",
-    "image-with-text",
-    "multicolumn",
-    "product-recommendations"
-  ]
+  "order": ["main", "image-with-text", "multicolumn", "product-recommendations"]
 }
