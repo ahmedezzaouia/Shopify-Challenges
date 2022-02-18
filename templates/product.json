@@ -145,10 +145,7 @@
         "show_secondary_image": true,
         "padding_bottom": 28
       }
-    },
-    "test": {
-      "type": "test-section"
     }
   },
-  "order": ["main", "image-with-text", "multicolumn", "product-recommendations","test"]
+  "order": ["main", "image-with-text", "multicolumn", "product-recommendations"]
 }
