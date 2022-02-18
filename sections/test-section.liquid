@@ -1,8 +1,8 @@
 <div class="testimonials">
   <br/>
-  <h3 style = {{section.settings.title_font_size | append:'px' }}
-   class="testimonials-title" >{{section.settings.title}}</h3>
+  <h3 class="testimonials-title" >{{section.settings.title}}</h3>
   <div class="testimonials-container">
+    {% for block in section.blocks %}
     <figure class="snip1157">
       <blockquote>
         Calvin: You know sometimes when I'm talking, my words can't keep up with my thoughts... I wonder why we think
@@ -14,6 +14,21 @@
         <h5>Pelican Steve <span> LIttleSnippets.net</span></h5>
       </div>
     </figure>
+    {% endfor %}
+  
+
+    <!-- <figure class="snip1157">
+      <blockquote>
+        Calvin: You know sometimes when I'm talking, my words can't keep up with my thoughts... I wonder why we think
+        faster than we speak. Hobbes: Probably so we can think twice.
+        <div class="arrow"></div>
+      </blockquote>
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample3.jpg" alt="sq-sample3" />
+      <div class="author">
+        <h5>Pelican Steve <span> LIttleSnippets.net</span></h5>
+      </div>
+    </figure>
+
     <figure class="snip1157 hover">
       <blockquote>
         Thank you. before I begin, I'd like everyone to notice that my report is in a professional, clear plastic
@@ -35,14 +50,15 @@
       <div class="author">
         <h5>Eleanor Faint<span> LIttleSnippets.net</span></h5>
       </div>
-    </figure>
+    </figure> -->
   </div>
 </div>
 
 <!-- ----------- schema code here --------------- -->
 
 {% schema %}
-{ "name": "Testimonials",
+{ 
+  "name": "Testimonials",
     "settings":
     [
             {
@@ -58,26 +74,53 @@
               "max": 50,
               "step": 5,
               "unit": "px",
-              "label": "Font size",
+              "label": "Title Font size",
               "default": 10
+            },
+            {
+              "type": "color",
+              "id": "title_color",
+              "label": "Title Color",
+              "default": "#000000"
+            },
+            {
+              "type": "color",
+              "id": "testimonials_color",
+              "label": "testimonials Color",
+              "default": "#106464"
             }
             
     ],
-"blocks":[ ],
-"presets": [
-{
-"name": "Testimonials",
-"category": "Custom"
-}
-]
-} {% endschema %}
+    "blocks":
+              [
+                  {
+                    "name": "Testimonial",
+                    "type": "html",
+                    "settings":[]
+                  }        
+              ],
+    "presets": 
+              [
+                    {
+                    "name": "Testimonials",
+                    "category": "Custom",
+                    "blocks":
+                            [
+                                {
+                                 "type": "html"
+                                }
+                            ] 
+                  },
+              ]
+} 
+{% endschema %}
 
 <style>
   @import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
 
   .testimonials {
-    background-color: burlywood;
-    padding-top: 3rem;
+    background-color: {{section.settings.testimonials_color}};
+    /* padding-top: 3rem; */
   }
 
   .testimonials-container {
@@ -89,11 +132,14 @@
   }
 
   .testimonials-title {
+    font-size: {{section.settings.title_font_size | append:'px' }};
+    color:{{section.settings.title_color}};
     text-transform: uppercase;
     font-weight: 600;
     font-family: "Raleway", Arial, sans-serif;
     text-align: center;
-    padding: 2rem;
+    
+    /* padding: 2rem; */
   }
 
   figure.snip1157 {
