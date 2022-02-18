@@ -1,6 +1,7 @@
 <div class="testimonials">
   <br/>
-  <h3 class="testimonials-title" >{{section.settings.title}}</h3>
+  <h3 style = {{section.settings.title_font_size | append:'px' }}
+   class="testimonials-title" >{{section.settings.title}}</h3>
   <div class="testimonials-container">
     <figure class="snip1157">
       <blockquote>
@@ -88,7 +89,6 @@
   }
 
   .testimonials-title {
-    font-size: '{{section.settings.title_font_size | append:'px' }}' ;
     text-transform: uppercase;
     font-weight: 600;
     font-family: "Raleway", Arial, sans-serif;
