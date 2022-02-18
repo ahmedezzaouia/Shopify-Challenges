@@ -1,64 +1,28 @@
 <div class="testimonials">
   <br/>
-  <h3 class="testimonials-title" >{{section.settings.title}}</h3>
+  <h3 class="testimonials-title"  >{{section.settings.title}}</h3>
   <div class="testimonials-container">
     {% for block in section.blocks %}
     <figure class="snip1157">
-      <blockquote>
-        Calvin: You know sometimes when I'm talking, my words can't keep up with my thoughts... I wonder why we think
-        faster than we speak. Hobbes: Probably so we can think twice.
+      <blockquote class="client-card" style= "color: {{block.settings.client_content_color}};background-color:{{block.settings.client_background_color}}"    >
+        {{block.settings.client_content}}
         <div class="arrow"></div>
       </blockquote>
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample3.jpg" alt="sq-sample3" />
+      <img src= "{{block.settings.client_profile_img | img_url :'300x300' }}"  alt="client profile" />
       <div class="author">
-        <h5>Pelican Steve <span> LIttleSnippets.net</span></h5>
+        <h5 style= "color: {{block.settings.client_profile_color}}"  >{{block.settings.client_name}} <span> {{block.settings.client_job}}</span></h5>
       </div>
     </figure>
     {% endfor %}
   
-
-    <!-- <figure class="snip1157">
-      <blockquote>
-        Calvin: You know sometimes when I'm talking, my words can't keep up with my thoughts... I wonder why we think
-        faster than we speak. Hobbes: Probably so we can think twice.
-        <div class="arrow"></div>
-      </blockquote>
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample3.jpg" alt="sq-sample3" />
-      <div class="author">
-        <h5>Pelican Steve <span> LIttleSnippets.net</span></h5>
-      </div>
-    </figure>
-
-    <figure class="snip1157 hover">
-      <blockquote>
-        Thank you. before I begin, I'd like everyone to notice that my report is in a professional, clear plastic
-        binder...When a report looks this good, you know it'll get an A. That's a tip kids. Write it down.
-        <div class="arrow"></div>
-      </blockquote>
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample27.jpg" alt="sq-sample27" />
-      <div class="author">
-        <h5>Max Conversion<span> LIttleSnippets.net</span></h5>
-      </div>
-    </figure>
-    <figure class="snip1157">
-      <blockquote>
-        My behaviour is addictive functioning in a disease process of toxic co-dependency. I need holistic healing and
-        wellness before I'll accept any responsibility for my actions.
-        <div class="arrow"></div>
-      </blockquote>
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample17.jpg" alt="sq-sample17" />
-      <div class="author">
-        <h5>Eleanor Faint<span> LIttleSnippets.net</span></h5>
-      </div>
-    </figure> -->
   </div>
 </div>
 
-<!-- ----------- schema code here --------------- -->
+<!------------- schema code here --------------- -->
 
 {% schema %}
 { 
-  "name": "Testimonials",
+    "name": "Testimonials",
     "settings":
     [
             {
@@ -68,6 +32,12 @@
             "default":"What People Say"
             },
             {
+              "type": "font_picker",
+              "id": "title_font",
+              "label": "Title font",
+              "default": "helvetica_n4"
+            },
+            {
               "type": "range",
               "id": "title_font_size",
               "min": 10,
@@ -75,7 +45,7 @@
               "step": 5,
               "unit": "px",
               "label": "Title Font size",
-              "default": 10
+              "default": 40
             },
             {
               "type": "color",
@@ -84,19 +54,83 @@
               "default": "#000000"
             },
             {
+              "type": "radio",
+              "id": "testimonials_aligment",
+              "label": "Testimonials Style",
+              "options": [
+                {
+                  "value": "color",
+                  "label": "Use Color"
+                },
+                {
+                  "value": "background",
+                  "label": "Use Backgroud Image"
+                }
+              ],
+              "default": "color"
+            },
+            {
               "type": "color",
               "id": "testimonials_color",
-              "label": "testimonials Color",
+              "label": "Background Color",
               "default": "#106464"
-            }
-            
+            },
+            {
+              "type": "image_picker",
+              "id": "background_image",
+              "label": "Background Image"
+            }             
     ],
     "blocks":
               [
                   {
                     "name": "Testimonial",
                     "type": "html",
-                    "settings":[]
+                    "settings":
+                    [
+                        {
+                          "type": "text",
+                          "id": "client_name",
+                          "label": "Full Name",
+                          "default": "PELICAN STEVE"
+                        },
+                        {
+                          "type": "color",
+                          "id": "client_profile_color",
+                          "label": "Full Name Color",
+                          "default": "#FFFFFF"
+                        },
+                        {
+                          "type": "image_picker",
+                          "id": "client_profile_img",
+                          "label": "Avatar Image"
+                        },
+                        {
+                          "type": "text",
+                          "id": "client_job",
+                          "label": "Client Job",
+                          "default": "LIttleSnippets.net"
+                        },
+                        {
+                          "type": "textarea",
+                          "id": "client_content",
+                          "label": "What Client Say",
+                          "default": "Sara: You know sometimes when I'm talking, my words can't keep up with my thoughts... I wonder why we think faster than we speak. Hobbes: Probably so we can think twice."
+                        },
+                        {
+                          "type": "color",
+                          "id": "client_content_color",
+                          "label": "Quotes Color",
+                          "default": "#333"
+                        },
+                        {
+                          "type": "color",
+                          "id": "client_background_color",
+                          "label": "Background Color",
+                          "default": "#fafafa"
+                        }
+                      
+                    ]
                   }        
               ],
     "presets": 
@@ -108,9 +142,15 @@
                             [
                                 {
                                  "type": "html"
+                                },
+                                {
+                                  "type": "html"
+                                },
+                                {
+                                  "type": "html"                                  
                                 }
                             ] 
-                  },
+                  }
               ]
 } 
 {% endschema %}
@@ -119,8 +159,15 @@
   @import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
 
   .testimonials {
+    {% if section.settings.testimonials_aligment == "color" %}
     background-color: {{section.settings.testimonials_color}};
-    /* padding-top: 3rem; */
+    {% else %}
+    background: url("https:{{section.settings.background_image | img_url: 'large'}}");
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: cover;
+
+    {% endif %}
   }
 
   .testimonials-container {
@@ -129,14 +176,15 @@
     justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 5rem;
+
   }
 
   .testimonials-title {
+    font-family: {{section.settings.title_font.family}};
     font-size: {{section.settings.title_font_size | append:'px' }};
     color:{{section.settings.title_color}};
     text-transform: uppercase;
-    font-weight: 600;
-    font-family: "Raleway", Arial, sans-serif;
+    font-weight: 800;
     text-align: center;
     
     /* padding: 2rem; */
