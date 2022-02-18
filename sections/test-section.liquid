@@ -10,7 +10,7 @@
       </blockquote>
       <img src= "{{block.settings.client_profile_img | img_url :'300x300' }}"  alt="client profile" />
       <div class="author">
-        <h5 style= "color: {{block.settings.client_profile_color}}"  >{{block.settings.client_name}} <span> {{block.settings.client_job}}</span></h5>
+        <h5 style= "color: {{block.settings.client_profile_color}}" >{{block.settings.client_name}}<br/><span> {{block.settings.client_job}}</span></h5>
       </div>
     </figure>
     {% endfor %}
@@ -51,7 +51,7 @@
               "type": "color",
               "id": "title_color",
               "label": "Title Color",
-              "default": "#000000"
+              "default": "#FFFFFF"
             },
             {
               "type": "radio",
@@ -92,7 +92,7 @@
                           "type": "text",
                           "id": "client_name",
                           "label": "Full Name",
-                          "default": "PELICAN STEVE"
+                          "default": "AHMED EZZAOUIIA"
                         },
                         {
                           "type": "color",
@@ -109,7 +109,7 @@
                           "type": "text",
                           "id": "client_job",
                           "label": "Client Job",
-                          "default": "LIttleSnippets.net"
+                          "default": "Shopify Developer"
                         },
                         {
                           "type": "textarea",
