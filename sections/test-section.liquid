@@ -166,7 +166,6 @@
     background-position: center;
     background-repeat:no-repeat;
     background-size: cover;
-
     {% endif %}
   }
 
@@ -180,7 +179,7 @@
   }
 
   .testimonials-title {
-    font-family: {{section.settings.title_font.family}};
+    font-family: {{section.settings.title_font.family}} serif;
     font-size: {{section.settings.title_font_size | append:'px' }};
     color:{{section.settings.title_color}};
     text-transform: uppercase;
@@ -231,7 +230,6 @@
     line-height: 1.6em;
     font-style: italic;
   }
-
   figure.snip1157 blockquote:before,
   figure.snip1157 blockquote:after {
     font-family: "FontAwesome";

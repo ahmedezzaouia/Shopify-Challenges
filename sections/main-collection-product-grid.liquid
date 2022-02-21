@@ -187,3 +187,14 @@
   ]
 }
 {% endschema %}
+
+{% javascript %}
+
+fetch('https://urbanasacs.com/collections/all?sections_id=grid-uniform').then(res=>res.json().then(data => {
+  console.log(data)
+}))
+
+
+{% endjavascript %}
+
+<grid-uniform
