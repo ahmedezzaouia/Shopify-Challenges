@@ -5,13 +5,17 @@
     "title":"{{collection.title}}",
     "description":"{{collection.description}}",
     "products":[
-    {% for product in collection %}
+    {% for product in collection.products %}
         {
             "title":"{{product.title}}",
             "price_min":"{{product.price.min}}",
-            "price_max":"{{product.price_max}}"
+            "price_max":"{{product.price_max}}",
         }
         {% unless forloop.last %},{% endunless %}
     {% endfor %}
     ]
 }
+
+{% comment %} fetch('https://developer-2022.myshopify.com/collections/all?view=json')
+  .then(response => response.json())
+  .then(data => console.log(data)); {% endcomment %}
