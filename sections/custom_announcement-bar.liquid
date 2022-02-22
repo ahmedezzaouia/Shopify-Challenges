@@ -1,0 +1,72 @@
+<div class="announcement">
+    <div>
+
+        {{section.settings.big_text}}   
+    </div>
+    <p> 
+    
+        {{section.settings.small_text}}
+       
+    </p>
+</div>
+
+
+
+
+
+{% schema %}
+    {
+    "name": "Custom Announcement Bar",
+    "settings":
+                [
+                    {
+                        "type": "number",
+                        "id": "parrent_height",
+                        "label": "Announcement Height",
+                        "default": 50
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "big_text",
+                        "label": "highlight Text"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "small_text",
+                        "label": "Small Text"
+                    }
+                      
+                
+                ],
+    "presets":
+                [
+                    {
+                        "name": "Custom Announcement Bar",
+                        "category": "Custom"
+                    }
+                ]
+    }
+{% endschema %}
+
+
+{%- style -%}
+    .announcement {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        background: black;
+        color: white;
+        font-family: Arial, sans;
+        margin: 0;
+        height: {{section.settings.parrent_height  | append : 'px'}};
+        vertical-align: middle;
+        font-size: 0.8em;
+        color
+    }
+    <!-- p span{
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    } -->
+
+{%- endstyle -%}
