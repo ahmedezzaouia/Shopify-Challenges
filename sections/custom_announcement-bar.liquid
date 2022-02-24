@@ -2,7 +2,10 @@
          <div>
             {{section.settings.bar_content}}
         </div>
-        <button class="announcement_btn" role="button">Sign up</button>
+        {% for block in section.blocks %}
+            <button class="announcement_btn" role="button">{{block.btn-text}}</button>
+          {% endfor %}
+          
 
 </div>
 
@@ -52,6 +55,12 @@
                         "type": "html",
                         "settings":
                                     [
+                                            {
+                                                "type": "text",
+                                                "id": "btn_text",
+                                                "label": "Button Text",
+                                                "default": "Sign Up"
+                                            },
                                             {
                                                 "type": "radio",
                                                 "id": "btn_border_style",
