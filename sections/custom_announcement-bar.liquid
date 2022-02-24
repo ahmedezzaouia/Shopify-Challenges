@@ -3,15 +3,35 @@
             {{section.settings.bar_content}}
         </div>
         {% for block in section.blocks %}
-            <button class="announcement_btn" role="button">{{block.btn-text}}</button>
-          {% endfor %}
+            <style>
+                .announcement_btn {
+                    border: none;
+                    color: white;
+                    overflow: hidden;
+                    margin-left: 1.5rem;
+                    text-transform: uppercase;
+                    width: 150px;
+                    height: 40px;
+                    color: white;
+                    cursor:pointer;
+                    background-color: {{block.settings.btn_background_color}};
+                    border: 2px {{block.settings.btn_border_color}} {{block.settings.btn_border_style}};
+                    border-radius:{{block.settings.top_left}}px {{block.settings.top_right}}px {{block.settings.bottom_right}}px {{block.settings.bottom_left}}px 
+                }
+                .announcement_btn:hover{
+                    background-color:{{block.settings.btn_hover_color}};
+                }
+               
+            </style>
+            <button class="announcement_btn" role="button">gghjg</button>
+           
+        {% endfor %}
           
 
 </div>
 
 
 
-{% assign background_url =  "https://s3.amazonaws.com/lastsecondcoupon/img/bar_background/halloween04.png" %}
 
 
 {% schema %}
@@ -158,24 +178,8 @@
         font-size: 0.9em;
     }
 
-    .announcement_btn {
-        border: none;
-        color: white;
-        overflow: hidden;
-        margin-left: 1.5rem;
-        text-transform: uppercase;
-        width: 150px;
-        height: 40px;
-        background-color: {{section.settings.btn_background_color}};
-        border: 2px {{section.settings.btn_border_style}} {{section.settings.btn_border_color}};
-        color: white;
-        cursor:pointer;
-        border-radius:{{section.settings.top_left}}px {{section.settings.top_right}}px {{section.settings.bottom_right}}px {{section.settings.bottom_left}}px 
-    }
-    .announcement_btn:hover{
-        background-color:{{section.settings.btn_hover_color}};
-    }
-
+   
+   
 
     
       
