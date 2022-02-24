@@ -8,7 +8,7 @@
 
 
 
-
+{% assign background_url =  "https://s3.amazonaws.com/lastsecondcoupon/img/bar_background/halloween04.png" %}
 
 
 {% schema %}
@@ -28,77 +28,104 @@
                         "label": "Background Color",
                         "default": "#000000"
                     },
-                   
                     {
-                        "type": "header",
-                        "content": "Botton Settings"
-                    },
-                    {
-                        "type": "radio",
-                        "id": "btn_border_style",
-                        "label": "Botton Style",
+                        "type": "select",
+                        "id": "Background_aligment",
+                        "label": "background alignment",
                         "options": [
                           {
-                            "value": "solid",
-                            "label": "Solid"
+                            "value": "https://bit.ly/3BNnNdT",
+                            "label": "Halloween"
                           },
                           {
-                            "value": "dotted",
-                            "label": "Dotted"
+                            "value": "https://bit.ly/3JQ2D1S",
+                            "label": "Sales"
                           }
                         ],
-                        "default": "solid"
-                    },
+                        "default": "https://bit.ly/3JQ2D1S"
+                    }               
+                ],
+    "blocks":
+                [
                     {
-                        "type": "number",
-                        "id": "top_left",
-                        "label": "Border Radius : Top Left",
-                        "default": 0
-                    },
-                    {
-                        "type": "number",
-                        "id": "top_right",
-                        "label": "Border Radius : Top Right",
-                        "default": 0
-                    },
-                    {
-                        "type": "number",
-                        "id": "bottom_right",
-                        "label": "Border Radius : Buttom Right",
-                        "default": 0
-                    },
-                    {
-                        "type": "number",
-                        "id": "bottom_left",
-                        "label": "Border Radius : Bottom Left",
-                        "default": 0
-                    },
-                   
-                    {
-                        "type": "color",
-                        "id": "btn_border_color",
-                        "label": "Border Color",
-                        "default": "#F79D05"
-                    },
-                    {
-                        "type": "color",
-                        "id": "btn_background_color",
-                        "label": "Background Color",
-                        "default": "transparent"
-                    },
-                    {
-                        "type": "color",
-                        "id": "btn_hover_color",
-                        "label": "Hover Background Color",
-                        "default": "transparent"
+                        "name": "Button",
+                        "type": "html",
+                        "settings":
+                                    [
+                                            {
+                                                "type": "radio",
+                                                "id": "btn_border_style",
+                                                "label": "Botton Style",
+                                                "options": [
+                                                {
+                                                    "value": "solid",
+                                                    "label": "Solid"
+                                                },
+                                                {
+                                                    "value": "dotted",
+                                                    "label": "Dotted"
+                                                }
+                                                ],
+                                                "default": "solid"
+                                            },
+                                            {
+                                                "type": "number",
+                                                "id": "top_left",
+                                                "label": "Border Radius : Top Left",
+                                                "default": 0
+                                            },
+                                            {
+                                                "type": "number",
+                                                "id": "top_right",
+                                                "label": "Border Radius : Top Right",
+                                                "default": 0
+                                            },
+                                            {
+                                                "type": "number",
+                                                "id": "bottom_right",
+                                                "label": "Border Radius : Buttom Right",
+                                                "default": 0
+                                            },
+                                            {
+                                                "type": "number",
+                                                "id": "bottom_left",
+                                                "label": "Border Radius : Bottom Left",
+                                                "default": 0
+                                            },
+                                        
+                                            {
+                                                "type": "color",
+                                                "id": "btn_border_color",
+                                                "label": "Border Color",
+                                                "default": "#F79D05"
+                                            },
+                                            {
+                                                "type": "color",
+                                                "id": "btn_background_color",
+                                                "label": "Background Color",
+                                                "default": "transparent"
+                                            },
+                                            {
+                                                "type": "color",
+                                                "id": "btn_hover_color",
+                                                "label": "Hover Background Color",
+                                                "default": "transparent"
+                                            }
+
+                                    ]
                     }
-                   
                 ],
     "presets":
                 [
                     {
                         "name": "Custom Announcement Bar",
-                        "category": "Custom"
+                        "category": "Custom",
+                        "blocks":
+                                [
+                                        {
+                                        "type": "html"
+                                        }
+                                ]
                     }
                 ]
     }
@@ -112,7 +139,11 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        background: {{section.settings.content_background_color}};
+        background-color: {{section.settings.content_background_color}};
+        background: url("{{section.settings.Background_aligment}}");
+        background-position: center;
+        background-repeat:no-repeat;
+        background-size: cover;
         color: white; 
         font-family: Arial, sans;
         font-size: 0.9em;
