@@ -1,37 +1,25 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="announcement">
-         <div>
-            {{section.settings.bar_content}}
-        </div>
         {% for block in section.blocks %}
-            <style>
-                .announcement_btn {
-                    border: none;
-                    color: white;
-                    overflow: hidden;
-                    margin-left: 1.5rem;
-                    text-transform: uppercase;
-                    width: 150px;
-                    height: 40px;
-                    color: white;
-                    cursor:pointer;
-                    background-color: {{block.settings.btn_background_color}};
-                    border: 2px {{block.settings.btn_border_color}} {{block.settings.btn_border_style}};
-                    border-radius:{{block.settings.top_left}}px {{block.settings.top_right}}px {{block.settings.bottom_right}}px {{block.settings.bottom_left}}px 
-                }
-                .announcement_btn:hover{
-                    background-color:{{block.settings.btn_hover_color}};
-                }
-               
-            </style>
-            <button class="announcement_btn" role="button">gghjg</button>
-           
+            {% if block.type == 'button' %}
+                    <div>
+                        <a href="{{block.settings.btn_link}}">
+                            <button 
+                                class="announcement_btn margin_x"
+                                role="button"
+                                style= "color:{{block.settings.btn_text_color}};background-color: {{block.settings.btn_background_color}};  border: 2px {{block.settings.btn_border_color}} {{block.settings.btn_border_style}};border-radius:{{block.settings.top_left}}px {{block.settings.top_right}}px {{block.settings.bottom_right}}px {{block.settings.bottom_left}}px"
+                            >{{block.settings.btn_text}}</button>
+                        </a>
+                    </div>
+            {% elsif block.type == 'textarea' %}
+                <div class="bar_content margin_x" style="font-family:{{block.settings.textarea_font.family}}; font-size:{{block.settings.textarea_font_size}}px" >
+                    <i class="{{block.settings.icon_alignment}}" style="font-size:{{block.settings.icon_font_size}}px;color:{{block.settings.icon_color}}"></i>
+                    {{block.settings.bar_content}}
+                    <i class="{{block.settings.icon_alignment}}" style="font-size:{{block.settings.icon_font_size}}px;color:{{block.settings.icon_color}}"></i>
+                </div>
+            {% endif %}
         {% endfor %}
-          
-
 </div>
-
-
-
 
 
 {% schema %}
@@ -39,12 +27,6 @@
     "name": "Custom Announcement Bar",
     "settings":
                 [
-                    {
-                        "type": "richtext",
-                        "id": "bar_content",
-                        "label": "Announcement Content",
-                        "default": "<p>WELCOME TO MY STORE</p>"
-                    },
                     {
                         "type": "color",
                         "id": "content_background_color",
@@ -66,13 +48,14 @@
                           }
                         ],
                         "default": "https://bit.ly/3JQ2D1S"
-                    }               
+                    }
+                       
                 ],
     "blocks":
                 [
                     {
                         "name": "Button",
-                        "type": "html",
+                        "type": "button",
                         "settings":
                                     [
                                             {
@@ -81,6 +64,17 @@
                                                 "label": "Button Text",
                                                 "default": "Sign Up"
                                             },
+                                            {
+                                                "type": "color",
+                                                "id": "btn_text_color",
+                                                "label": "Button Title",
+                                                "default": "#ffffff"
+                                            },
+                                            {
+                                                "type": "url",
+                                                "id": "btn_link",
+                                                "label": "Button link"
+                                            },                                              
                                             {
                                                 "type": "radio",
                                                 "id": "btn_border_style",
@@ -142,7 +136,95 @@
                                             }
 
                                     ]
+                    },
+                    {
+                        "name":"Text",
+                        "type":"textarea",
+                        "settings":
+                                    [
+                                        {
+                                            "type": "richtext",
+                                            "id": "bar_content",
+                                            "label": "Announcement Content",
+                                            "default": "<p>WELCOME TO MY STORE</p>"
+                                        },
+                                        {
+                                            "type": "font_picker",
+                                            "id": "textarea_font",
+                                            "label": "Heading font",
+                                            "default": "helvetica_n4"
+                                         },
+                                        {
+                                            "type": "number",
+                                            "id": "textarea_font_size",
+                                            "label": "Border Radius : Top Right",
+                                            "default":  17
+                                        },
+                                        {
+                                            "type": "header",
+                                            "content": "Add Icons To your Announcement Bar"
+                                         },
+                                        {
+                                            "type": "select",
+                                            "id": "icon_alignment",
+                                            "label": "Choose Icons",
+                                            "options": [
+                                                 {
+                                                    "value": "",
+                                                    "label": "Empty"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-anchor",
+                                                    "label": "anchor"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-arrows",
+                                                    "label": "arrows"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-asterisk",
+                                                    "label": "asterisk"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-bell",
+                                                    "label": "bell"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-certificate",
+                                                    "label": "certificate"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-check-circle",
+                                                    "label": "check circle"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-asl-interpreting",
+                                                    "label": "interpreting"
+                                                  }
+                                                ],
+                                                "default": ""
+                                                },    
+                                                {
+                                                    "type": "range",
+                                                    "id": "icon_font_size",
+                                                    "min": 10,
+                                                    "max": 100,
+                                                    "step": 1,
+                                                    "unit": "px",
+                                                    "label": "Icon size",
+                                                    "default":24
+                                                },
+                                                {
+                                                    "type": "color",
+                                                    "id": "icon_color",
+                                                    "label": "Body text",
+                                                    "default": "#ffffff"
+                                                }
+                                                  
+                                              
+                                    ]
                     }
+                  
                 ],
     "presets":
                 [
@@ -152,7 +234,10 @@
                         "blocks":
                                 [
                                         {
-                                        "type": "html"
+                                            "type": "button"
+                                        },
+                                        {
+                                            "type":"textarea"
                                         }
                                 ]
                     }
@@ -175,12 +260,49 @@
         background-size: cover;
         color: white; 
         font-family: Arial, sans;
-        font-size: 0.9em;
+        padding: 14px 0px;
+        
     }
+    .bar_content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bac
+    }
+    .bar_content i{
+        margin:5px
+    }
+    @media only screen and (max-width: 600px) {
+        .bar_content {
+         width:100%;
+         font-size:13px;
 
-   
-   
 
+        }
+        .bar_content p{
+            font-size:14.5px;
+        }
+        .announcement button{
+            margin:5px !important
+        }
+      }
+   
+    .announcement_btn {
+        border: none;
+        color: white;
+        overflow: hidden;
+        text-transform: uppercase;
+        width: 150px;
+        height: 40px;
+        color: white;
+        cursor:pointer;
+        margin: 0 10px;
+    
+    }
+    
+    .margin_x{
+        margin: 0 5px;
+    }
     
       
    {% endstyle %}
