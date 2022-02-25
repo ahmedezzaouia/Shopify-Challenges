@@ -27,6 +27,30 @@
     "name": "Custom Announcement Bar",
     "settings":
                 [
+                  {
+                    "type": "radio",
+                    "id": "bar_style_aligment",
+                    "label": "Style alignment",
+                    "options": [
+                      {
+                        "value": "color",
+                        "label": "Background Color"
+                      },
+                      {
+                        "value": "embeded",
+                        "label": "Embeded Examples"
+                      },
+                      {
+                        "value": "picker",
+                        "label": "Image Picker"
+                      }
+                    ],
+                    "default": "color"
+                  },
+                   {
+                      "type": "header",
+                      "content": "uploade Background Image"
+                   },  
                     {
                         "type": "color",
                         "id": "content_background_color",
@@ -39,17 +63,97 @@
                         "label": "background alignment",
                         "options": [
                           {
+                            "value": "https://bit.ly/3viotXC",
+                            "label": "background 1"
+                          },
+                          {
+                            "value": "https://bit.ly/3vkXuec",
+                            "label": "background 2"
+                          },
+                          {
+                            "value": "https://bit.ly/3hjDOPC",
+                            "label": "background 3"
+                          },
+                          {
+                            "value": "https://bit.ly/3JV7v5Q",
+                            "label": "background 4"
+                          },
+                          {
+                            "value": "https://bit.ly/3pis2t4",
+                            "label": "background 5"
+                          },
+                          {
+                            "value": "https://bit.ly/3Hm7hCQ",
+                            "label": "background 6"
+                          },
+                          {
+                            "value": "https://bit.ly/3hkiPfi",
+                            "label": "background 7"
+                          },
+                          {
+                            "value": "https://bit.ly/3t6xWPe",
+                            "label": "background 8"
+                          },
+                          {
+                            "value": "https://bit.ly/36vGTtx",
+                            "label": "background 9"
+                          },
+                          {
+                            "value": "https://bit.ly/3Iqx5zk",
+                            "label": "background 10"
+                          },
+                          {
+                            "value": "https://bit.ly/3MeE0Or",
+                            "label": "background 11"
+                          },
+                          {
+                            "value": "https://bit.ly/3Hzaak9",
+                            "label": "background 12"
+                          },
+                          {
+                            "value": "https://bit.ly/3tgB8b8",
+                            "label": "background 13"
+                          },
+                          {
+                            "value": "https://bit.ly/3pgRWgU",
+                            "label": "background 14"
+                          },
+                          {
+                            "value": "https://bit.ly/355pGHg",
+                            "label": "background 15"
+                          },
+                          {
+                            "value": "https://bit.ly/3vzjHFx",
+                            "label": "background 16"
+                          },
+                          {
+                            "value": "https://bit.ly/3pe6ddZ",
+                            "label": "background 17"
+                          },
+                          {
+                            "value": "https://bit.ly/3pelZpy",
+                            "label": "background 18"
+                          },
+                          {
+                            "value": "https://bit.ly/3JV3BKe",
+                            "label": "background 19"
+                          },
+                          {
                             "value": "https://bit.ly/3BNnNdT",
-                            "label": "Halloween"
+                            "label": "background 20"
                           },
                           {
                             "value": "https://bit.ly/3JQ2D1S",
-                            "label": "Sales"
+                            "label": "background 21"
                           }
                         ],
-                        "default": "https://bit.ly/3JQ2D1S"
-                    }
-                       
+                        "default": "https://bit.ly/3hjDOPC"
+                    },                
+                    {
+                        "type": "image_picker",
+                        "id": "bar_bgr_image",
+                        "label": "Background image"
+                    }     
                 ],
     "blocks":
                 [
@@ -169,10 +273,14 @@
                                             "id": "icon_alignment",
                                             "label": "Choose Icons",
                                             "options": [
-                                                 {
+                                                  {
                                                     "value": "",
-                                                    "label": "Empty"
+                                                    "label": "None"
                                                   },
+                                                  {
+                                                    "value": "fa fa-first-order",
+                                                    "label": "order"
+                                                  },                
                                                   {
                                                     "value": "fa fa-anchor",
                                                     "label": "anchor"
@@ -200,6 +308,106 @@
                                                   {
                                                     "value": "fa fa-asl-interpreting",
                                                     "label": "interpreting"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-circle",
+                                                    "label": "circle"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-cog",
+                                                    "label": "cog"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-cutlery",
+                                                    "label": "cutlery"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-flash",
+                                                    "label": "flash"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-industry",
+                                                    "label": "industry"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-key",
+                                                    "label": "key"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-leaf",
+                                                    "label": "leaf"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-mail-forward",
+                                                    "label": "mail forward"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-map-pin",
+                                                    "label": "pin"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-music",
+                                                    "label": "music"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-plane",
+                                                    "label": "plane"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-shopping-bag",
+                                                    "label": "shopping bag"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-shopping-basket",
+                                                    "label": "shopping basket"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-signing",
+                                                    "label": "signing"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-snowflake-o",
+                                                    "label": "snowflake"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-space-shuttle",
+                                                    "label": "shuttle"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-star",
+                                                    "label": "star"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-tag",
+                                                    "label": "tag"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-birthday-cake",
+                                                    "label": "birthday cake"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-gift",
+                                                    "label": "gift"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-heart",
+                                                    "label": "heart"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-phone",
+                                                    "label": "phone"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-tree",
+                                                    "label": "tree"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-trophy",
+                                                    "label": "trophy"
+                                                  },
+                                                  {
+                                                    "value": "fa fa-unlock-alt",
+                                                    "label": "unlock"
                                                   }
                                                 ],
                                                 "default": ""
@@ -233,11 +441,12 @@
                         "category": "Custom",
                         "blocks":
                                 [
-                                        {
-                                            "type": "button"
-                                        },
+                                        
                                         {
                                             "type":"textarea"
+                                        },
+                                        {
+                                          "type": "button"
                                         }
                                 ]
                     }
@@ -253,14 +462,18 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        background-color: {{section.settings.content_background_color}};
-        background: url("{{section.settings.Background_aligment}}");
+        {% if section.settings.bar_style_aligment == "color" %}
+          background-color: {{section.settings.content_background_color}};
+        {% elsif section.settings.bar_style_aligment == "embeded" %}
+          background: url("{{section.settings.Background_aligment}}");
+        {% elsif section.settings.bar_style_aligment == "picker" %}
+          background: url("https:{{section.settings.bar_bgr_image | img_url: 'large'}}");
+        {%- endif -%}
         background-position: center;
         background-repeat:no-repeat;
         background-size: cover;
         color: white; 
         font-family: Arial, sans;
-        padding: 14px 0px;
         
     }
     .bar_content {
