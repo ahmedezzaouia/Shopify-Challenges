@@ -16,7 +16,9 @@
             {% elsif block.type == 'textarea' %}
                 <div class="bar_content margin_x" style="font-family:{{block.settings.textarea_font.family}}; font-size:{{block.settings.textarea_font_size}}px" >
                     <i class="{{block.settings.icon_alignment}}" style="font-size:{{block.settings.icon_font_size}}px;color:{{block.settings.icon_color}}"></i>
-                    {{block.settings.bar_content}}
+                    <div style="color:{{block.settings.bar_text_color}}">
+                      {{block.settings.bar_content}}
+                    </div>
                     <i class="{{block.settings.icon_alignment}}" style="font-size:{{block.settings.icon_font_size}}px;color:{{block.settings.icon_color}}"></i>
                 </div>
             {% endif %}
@@ -175,6 +177,12 @@
                                             "id": "bar_content",
                                             "label": "Announcement Content",
                                             "default": "<p>WELCOME TO MY STORE</p>"
+                                        },
+                                        {
+                                          "type": "color",
+                                          "id": "bar_text_color",
+                                          "label": "Content Color",
+                                          "default": "#ffffff"
                                         },
                                         {
                                             "type": "font_picker",
@@ -477,14 +485,19 @@
         color: white; 
         font-family: Arial, sans;
         position:relative;
+        padding: 7px 0;
+        
     }
-  
+    .announcement p{
+      margin:0
+    }
     .bar_content {
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index:2
+        z-index:2;
     }
+    
     .bar_content i{
         margin:5px
     }
@@ -518,7 +531,7 @@
       left:0px;
       bottom:0px;
       z-index:2;
-      opacity:{{section.settings.bar_opacity_size}}
+      opacity:{{section.settings.bar_opacity_size}} 
     }
     
     @media only screen and (max-width: 600px) {
