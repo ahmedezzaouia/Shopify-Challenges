@@ -760,3 +760,29 @@ requestAnimationFrame(this.hide.bind(this));
     ]
     }
     {% endschema %}
+
+
+ <div id="header_react"></div>
+    class Header extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { liked: 'hello' };
+      }
+      componentDidMount() {
+        console.log('start React app')
+      }
+    
+      sayHello() {
+        alert('Hello!');
+      }
+      
+      render() {
+       
+        return (
+          <h1>Hello Header</h1>
+        );
+      }
+    }
+
+    ReactDOM.render(<Header />, document.getElementById('header_react'))
+  </script>

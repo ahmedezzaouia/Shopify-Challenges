@@ -219,6 +219,13 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+
+    {% comment %} react link {% endcomment %}
+    <script defer src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script defer src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
 </head>
 
 <body class="gradient">
@@ -269,6 +276,53 @@
   {%- if settings.predictive_search_enabled -%}
   <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
+
+  <div id="mydiv"></div>
+
+  <script type="text/babel">
+    function handlClick(){
+      console.log("hello")
+      const btn = document.querySelector('.btn_react');
+      btn.style.color = 'red'
+    }
+    function Hello() {
+      return(
+        <div>
+            <button class="btn_react" onClick={handlClick}>
+              {{ shop.address.province }}
+
+            </button>
+
+        </div>
+      )
+    }
+
+    class LikeButton extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { liked: 'hello' };
+      }
+      componentDidMount() {
+        console.log('start React app')
+      }
+    
+      sayHello() {
+        alert('Hello!');
+      }
+      
+      render() {
+       
+        return (
+          <button onClick={this.sayHello}>{this.state.liked}</button>
+        );
+      }
+    }
+
+    ReactDOM.render(<LikeButton />, document.getElementById('mydiv'))
+  </script>
+
+
+
 </body>
 
 </html>
