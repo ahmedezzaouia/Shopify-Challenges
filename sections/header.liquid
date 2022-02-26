@@ -763,6 +763,8 @@ requestAnimationFrame(this.hide.bind(this));
 
 
  <div id="header_react"></div>
+
+ <script type="text/babel">
     class Header extends React.Component {
       constructor(props) {
         super(props);
@@ -777,12 +779,20 @@ requestAnimationFrame(this.hide.bind(this));
       }
       
       render() {
-       
         return (
-          <h1>Hello Header</h1>
+          <h1 class="react-head">Hello Header</h1>
         );
       }
     }
 
     ReactDOM.render(<Header />, document.getElementById('header_react'))
   </script>
+
+
+  <style>
+  .react-head{
+    background-color:red;
+    color:white;
+    text-align:center;
+  }
+</style>
