@@ -780,7 +780,10 @@ requestAnimationFrame(this.hide.bind(this));
       
       render() {
         return (
-          <h1 class="react-head">Hello Header</h1>
+          <div>
+            <h1 class="react-head">Hello Header</h1>
+            <h6>{{section.settings.logo_width}}</h6>
+          </div>
         );
       }
     }
