@@ -1,13 +1,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="announcement">
-        {% for block in section.blocks %}
-            {% if block.type == 'button' %}
-                    <div>
-                        <a href="{{block.settings.btn_link}}">
-                            <button 
-                                class="announcement_btn margin_x"
-                                role="button"
-                                style= "color:{{block.settings.btn_text_color}};background-color: {{block.settings.btn_background_color}};  border: 2px {{block.settings.btn_border_color}} {{block.settings.btn_border_style}};border-radius:{{block.settings.top_left}}px {{block.settings.top_right}}px {{block.settings.bottom_right}}px {{block.settings.bottom_left}}px"
+  <div class="backdrop">
+  </div>
+    {% for block in section.blocks %}
+      {% if block.type == 'button' %}
+        <div class="btn_container">
+          <a href="{{block.settings.btn_link}}">
+            <button 
+              class="announcement_btn margin_x"
+              role="button"
+              style= "color:{{block.settings.btn_text_color}};background-color: {{block.settings.btn_background_color}};  border: 2px {{block.settings.btn_border_color}} {{block.settings.btn_border_style}};border-radius:{{block.settings.top_left}}px {{block.settings.top_right}}px {{block.settings.bottom_right}}px {{block.settings.bottom_left}}px"
                             >{{block.settings.btn_text}}</button>
                         </a>
                     </div>
@@ -47,17 +49,23 @@
                     ],
                     "default": "color"
                   },
-                   {
-                      "type": "header",
-                      "content": "uploade Background Image"
-                   },  
-                    {
+                  {
+                    "type": "range",
+                    "id": "bar_opacity_size",
+                    "min": 0.0,
+                    "max": 1,
+                    "step": 0.1,
+                    "unit": "px",
+                    "label": "background opacity",
+                    "default": 0
+                  },
+                  {
                         "type": "color",
                         "id": "content_background_color",
                         "label": "Background Color",
                         "default": "#000000"
-                    },
-                    {
+                  },
+                  {
                         "type": "select",
                         "id": "Background_aligment",
                         "label": "background alignment",
@@ -147,100 +155,16 @@
                             "label": "background 21"
                           }
                         ],
-                        "default": "https://bit.ly/3hjDOPC"
-                    },                
-                    {
+                        "default": "https://bit.ly/3tgB8b8"
+                  },                
+                  {
                         "type": "image_picker",
                         "id": "bar_bgr_image",
                         "label": "Background image"
-                    }     
+                  }     
                 ],
     "blocks":
                 [
-                    {
-                        "name": "Button",
-                        "type": "button",
-                        "settings":
-                                    [
-                                            {
-                                                "type": "text",
-                                                "id": "btn_text",
-                                                "label": "Button Text",
-                                                "default": "Sign Up"
-                                            },
-                                            {
-                                                "type": "color",
-                                                "id": "btn_text_color",
-                                                "label": "Button Title",
-                                                "default": "#ffffff"
-                                            },
-                                            {
-                                                "type": "url",
-                                                "id": "btn_link",
-                                                "label": "Button link"
-                                            },                                              
-                                            {
-                                                "type": "radio",
-                                                "id": "btn_border_style",
-                                                "label": "Botton Style",
-                                                "options": [
-                                                {
-                                                    "value": "solid",
-                                                    "label": "Solid"
-                                                },
-                                                {
-                                                    "value": "dotted",
-                                                    "label": "Dotted"
-                                                }
-                                                ],
-                                                "default": "solid"
-                                            },
-                                            {
-                                                "type": "number",
-                                                "id": "top_left",
-                                                "label": "Border Radius : Top Left",
-                                                "default": 0
-                                            },
-                                            {
-                                                "type": "number",
-                                                "id": "top_right",
-                                                "label": "Border Radius : Top Right",
-                                                "default": 0
-                                            },
-                                            {
-                                                "type": "number",
-                                                "id": "bottom_right",
-                                                "label": "Border Radius : Buttom Right",
-                                                "default": 0
-                                            },
-                                            {
-                                                "type": "number",
-                                                "id": "bottom_left",
-                                                "label": "Border Radius : Bottom Left",
-                                                "default": 0
-                                            },
-                                        
-                                            {
-                                                "type": "color",
-                                                "id": "btn_border_color",
-                                                "label": "Border Color",
-                                                "default": "#F79D05"
-                                            },
-                                            {
-                                                "type": "color",
-                                                "id": "btn_background_color",
-                                                "label": "Background Color",
-                                                "default": "transparent"
-                                            },
-                                            {
-                                                "type": "color",
-                                                "id": "btn_hover_color",
-                                                "label": "Hover Background Color",
-                                                "default": "transparent"
-                                            }
-
-                                    ]
-                    },
                     {
                         "name":"Text",
                         "type":"textarea",
@@ -425,12 +349,90 @@
                                                 {
                                                     "type": "color",
                                                     "id": "icon_color",
-                                                    "label": "Body text",
+                                                    "label": "Icon Color",
                                                     "default": "#ffffff"
                                                 }
                                                   
                                               
                                     ]
+                    },
+                    {
+                      "type": "button",
+                      "name": "Button",
+                        "settings":
+                                  [
+                                          {
+                                              "type": "text",
+                                              "id": "btn_text",
+                                              "label": "Button Text",
+                                              "default": "Sign Up"
+                                          },
+                                          {
+                                              "type": "color",
+                                              "id": "btn_text_color",
+                                              "label": "Button Title",
+                                              "default": "#ffffff"
+                                          },
+                                          {
+                                              "type": "url",
+                                              "id": "btn_link",
+                                              "label": "Button link"
+                                          },                                              
+                                          {
+                                              "type": "radio",
+                                              "id": "btn_border_style",
+                                              "label": "Botton Style",
+                                              "options": [
+                                              {
+                                                  "value": "solid",
+                                                  "label": "Solid"
+                                              },
+                                              {
+                                                  "value": "dotted",
+                                                  "label": "Dotted"
+                                              }
+                                              ],
+                                              "default": "dotted"
+                                          },
+                                          {
+                                              "type": "number",
+                                              "id": "top_left",
+                                              "label": "Border Radius : Top Left",
+                                              "default": 20
+                                          },
+                                          {
+                                              "type": "number",
+                                              "id": "top_right",
+                                              "label": "Border Radius : Top Right",
+                                              "default": 0
+                                          },
+                                          {
+                                              "type": "number",
+                                              "id": "bottom_right",
+                                              "label": "Border Radius : Buttom Right",
+                                              "default": 20
+                                          },
+                                          {
+                                              "type": "number",
+                                              "id": "bottom_left",
+                                              "label": "Border Radius : Bottom Left",
+                                              "default": 0
+                                          },
+                                      
+                                          {
+                                              "type": "color",
+                                              "id": "btn_border_color",
+                                              "label": "Border Color",
+                                              "default": "#7DB0C2"
+                                          },
+                                          {
+                                              "type": "color",
+                                              "id": "btn_background_color",
+                                              "label": "Background Color",
+                                              "default": "transparent"
+                                          }
+
+                                  ]
                     }
                   
                 ],
@@ -443,7 +445,7 @@
                                 [
                                         
                                         {
-                                            "type":"textarea"
+                                          "type":"textarea"
                                         },
                                         {
                                           "type": "button"
@@ -474,23 +476,55 @@
         background-size: cover;
         color: white; 
         font-family: Arial, sans;
-        
+        position:relative;
     }
+  
     .bar_content {
         display: flex;
         align-items: center;
         justify-content: center;
-        bac
+        z-index:2
     }
     .bar_content i{
         margin:5px
     }
+    .btn_container{
+      z-index:2
+    }
+    .announcement_btn {
+      border: none;
+      color: white;
+      overflow: hidden;
+      width: 150px;
+      height: 40px;
+      color: white;
+      cursor:pointer;
+      margin: 0 10px;
+    }
+    .announcement_btn:hover{
+      background:#38414aa3 !important;
+      color:white
+    }
+    .margin_x{
+      margin: 0 5px;
+    }
+    
+    .backdrop{
+      background:#38414a;
+      width:100vw;
+      position:absolute;
+      top:0px;
+      right:0p;
+      left:0px;
+      bottom:0px;
+      z-index:2;
+      opacity:{{section.settings.bar_opacity_size}}
+    }
+    
     @media only screen and (max-width: 600px) {
         .bar_content {
          width:100%;
          font-size:13px;
-
-
         }
         .bar_content p{
             font-size:14.5px;
@@ -499,24 +533,5 @@
             margin:5px !important
         }
       }
-   
-    .announcement_btn {
-        border: none;
-        color: white;
-        overflow: hidden;
-        text-transform: uppercase;
-        width: 150px;
-        height: 40px;
-        color: white;
-        cursor:pointer;
-        margin: 0 10px;
-    
-    }
-    
-    .margin_x{
-        margin: 0 5px;
-    }
-    
-      
-   {% endstyle %}
+    {% endstyle %}
 
