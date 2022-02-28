@@ -97,10 +97,10 @@
         "type": "shopify:\/\/apps\/announcement_bar\/blocks\/announcemnet-bar_embeded\/60f92def-19a0-4654-83b1-0a822b263196",
         "disabled": false,
         "settings": {
-          "bar_style_aligment": "embeded",
+          "bar_style_aligment": "color",
           "bar_opacity_size": 0,
           "bar_background_position": 4,
-          "content_background_color": "#0f5c52",
+          "content_background_color": "#63af78",
           "Background_aligment": "https:\/\/bit.ly\/3tgB8b8",
           "bar_content": "<p>WELCOME TO MY STORE<\/p>",
           "bar_text_color": "#ffffff",
@@ -117,8 +117,8 @@
           "top_right": 0,
           "bottom_right": 20,
           "bottom_left": 0,
-          "btn_border_color": "#7DB0C2",
-          "btn_background_color": "transparent"
+          "btn_border_color": "#7db0c2",
+          "btn_background_color": "rgba(0,0,0,0)"
         }
       }
     }
