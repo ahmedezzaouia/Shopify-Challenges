@@ -99,9 +99,10 @@
         "settings": {
           "bar_style_aligment": "color",
           "bar_opacity_size": 0,
-          "bar_background_position": 4,
+          "bar_background_position": 44,
           "content_background_color": "#000000",
-          "Background_aligment": "https:\/\/bit.ly\/3tgB8b8"
+          "Background_aligment": "https:\/\/bit.ly\/3tgB8b8",
+          "bar_bgr_image": "shopify:\/\/shop_images\/pinecones-on-blue.jpg"
         }
       }
     }
