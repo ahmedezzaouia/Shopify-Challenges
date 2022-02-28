@@ -101,25 +101,25 @@
           "bar_opacity_size": 0.4,
           "bar_background_position": 46,
           "content_background_color": "#5c0e71",
-          "Background_aligment": "https:\/\/bit.ly\/3Hzaak9",
+          "Background_aligment": "https:\/\/bit.ly\/3tgB8b8",
           "bar_bgr_image": "shopify:\/\/shop_images\/fractals-gd0017947a_1920.jpg",
           "bar_content": "<p>WELCOME TO MY STORE <\/p>",
           "bar_text_color": "#ffffff",
-          "textarea_font": "helvetica_n4",
+          "textarea_font": "fjalla_one_n4",
           "textarea_font_size": 17,
-          "icon_alignment": "fa fa-certificate",
+          "icon_alignment": "fa fa-heart",
           "icon_font_size": 24,
-          "icon_color": "#08870c",
+          "icon_color": "#fe1088",
           "btn_text": "Sign Up",
           "btn_text_color": "#ffffff",
           "btn_link": "",
-          "btn_border_style": "dotted",
+          "btn_border_style": "solid",
           "top_left": 20,
           "top_right": 0,
           "bottom_right": 13,
           "bottom_left": 0,
-          "btn_border_color": "#13b24b",
-          "btn_background_color": "rgba(0,0,0,0)"
+          "btn_border_color": "#137bb2",
+          "btn_background_color": "#035285"
         }
       }
     }
