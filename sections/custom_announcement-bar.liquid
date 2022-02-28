@@ -25,6 +25,12 @@
         {% endfor %}
 </div>
 
+{% javascript %}
+const body = document.querySelector('body');
+const bar = document.querySelector('.announcement')
+body.insertBefore(bar, body.firstChild);
+bar.style.display = 'flex';
+{% endjavascript %}
 
 {% schema %}
     {
@@ -69,7 +75,7 @@
                     "step": 4,
                     "unit": "%",
                     "label": "background Position",
-                    "default": 50
+                    "default": 4
                   },
                   {
                         "type": "color",
@@ -476,7 +482,7 @@
 
 {% style %}
     .announcement {
-        display: flex;
+        display: none;
         flex-wrap: wrap;
         text-align: center;
         justify-content: center;
@@ -496,7 +502,6 @@
         font-family: Arial, sans;
         position:relative;
         padding: 7px 0;
-    
         
     }
     .announcement p{
@@ -558,4 +563,3 @@
         }
       }
     {% endstyle %}
-
