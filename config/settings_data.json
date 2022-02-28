@@ -97,7 +97,7 @@
         "type": "shopify:\/\/apps\/announcement_bar\/blocks\/announcemnet-bar_embeded\/60f92def-19a0-4654-83b1-0a822b263196",
         "disabled": false,
         "settings": {
-          "bar_style_aligment": "color",
+          "bar_style_aligment": "embeded",
           "bar_opacity_size": 0,
           "bar_background_position": 4,
           "content_background_color": "#8e1f1f",
