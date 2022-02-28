@@ -93,16 +93,32 @@
 
     ],
     "blocks": {
-      "13922177448509115601": {
-        "type": "shopify:\/\/apps\/announcement_bar\/blocks\/announcement_bar\/60f92def-19a0-4654-83b1-0a822b263196",
+      "12369752863897501558": {
+        "type": "shopify:\/\/apps\/announcement_bar\/blocks\/announcemnet-bar_embeded\/60f92def-19a0-4654-83b1-0a822b263196",
         "disabled": false,
         "settings": {
           "bar_style_aligment": "color",
           "bar_opacity_size": 0,
-          "bar_background_position": 44,
+          "bar_background_position": 4,
           "content_background_color": "#000000",
           "Background_aligment": "https:\/\/bit.ly\/3tgB8b8",
-          "bar_bgr_image": "shopify:\/\/shop_images\/pinecones-on-blue.jpg"
+          "bar_content": "<p>WELCOME TO MY STORE<\/p>",
+          "bar_text_color": "#ffffff",
+          "textarea_font": "helvetica_n4",
+          "textarea_font_size": 17,
+          "icon_alignment": "",
+          "icon_font_size": 24,
+          "icon_color": "#ffffff",
+          "btn_text": "Sign Up",
+          "btn_text_color": "#ffffff",
+          "btn_link": "",
+          "btn_border_style": "dotted",
+          "top_left": 20,
+          "top_right": 0,
+          "bottom_right": 20,
+          "bottom_left": 0,
+          "btn_border_color": "#7DB0C2",
+          "btn_background_color": "transparent"
         }
       }
     }
