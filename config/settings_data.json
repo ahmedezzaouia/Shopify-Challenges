@@ -6,11 +6,8 @@
         "blocks": {
           "announcement-bar-0": {
             "type": "announcement",
-            "disabled": true,
             "settings": {
-              "text": "Welcome to our store",
-              "color_scheme": "accent-2",
-              "link": "shopify:\/\/products\/antique-drawers"
+              "color_scheme": "background-1"
             }
           }
         },
@@ -23,13 +20,7 @@
       "header": {
         "type": "header",
         "settings": {
-          "color_scheme": "background-1",
-          "logo_width": 90,
-          "logo_position": "middle-left",
-          "menu": "main-menu",
-          "show_line_separator": true,
-          "enable_sticky_header": true,
-          "margin_bottom": 0
+          "logo_width": 90
         }
       },
       "footer": {
@@ -37,26 +28,19 @@
         "blocks": {
           "footer-0": {
             "type": "link_list",
-            "disabled": true,
             "settings": {
-              "heading": "Quick links",
-              "menu": "footer"
             }
           },
           "footer-1": {
             "type": "link_list",
-            "disabled": true,
             "settings": {
-              "heading": "Info",
-              "menu": "footer"
+              "heading": "Info"
             }
           },
           "footer-2": {
             "type": "text",
-            "disabled": true,
             "settings": {
-              "heading": "Our mission",
-              "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+              "heading": "Our mission"
             }
           }
         },
@@ -66,16 +50,10 @@
           "footer-2"
         ],
         "settings": {
-          "color_scheme": "inverse",
-          "newsletter_enable": true,
-          "newsletter_heading": "Subscribe to our emails",
-          "show_social": false,
-          "enable_country_selector": true,
+          "show_social": true,
+          "enable_country_selector": false,
           "enable_language_selector": false,
-          "payment_enable": false,
-          "margin_top": 48,
-          "padding_top": 36,
-          "padding_bottom": 36
+          "margin_top": 48
         }
       },
       "main-password-header": {
@@ -86,40 +64,6 @@
       "main-password-footer": {
         "type": "main-password-footer",
         "settings": {
-        }
-      }
-    },
-    "content_for_index": [
-
-    ],
-    "blocks": {
-      "12369752863897501558": {
-        "type": "shopify:\/\/apps\/announcement_bar\/blocks\/announcemnet-bar_embeded\/60f92def-19a0-4654-83b1-0a822b263196",
-        "disabled": false,
-        "settings": {
-          "bar_style_aligment": "embeded",
-          "bar_opacity_size": 0.4,
-          "bar_background_position": 46,
-          "content_background_color": "#5c0e71",
-          "Background_aligment": "https:\/\/bit.ly\/3tgB8b8",
-          "bar_bgr_image": "shopify:\/\/shop_images\/fractals-gd0017947a_1920.jpg",
-          "bar_content": "<p>WELCOME TO MY STORE <\/p>",
-          "bar_text_color": "#ffffff",
-          "textarea_font": "fjalla_one_n4",
-          "textarea_font_size": 17,
-          "icon_alignment": "fa fa-heart",
-          "icon_font_size": 24,
-          "icon_color": "#fe1088",
-          "btn_text": "Sign Up",
-          "btn_text_color": "#ffffff",
-          "btn_link": "",
-          "btn_border_style": "solid",
-          "top_left": 20,
-          "top_right": 0,
-          "bottom_right": 13,
-          "bottom_left": 0,
-          "btn_border_color": "#137bb2",
-          "btn_background_color": "#035285"
         }
       }
     }
