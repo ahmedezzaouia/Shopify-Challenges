@@ -14,7 +14,7 @@
             <h1>{{section.settings.header_text}}</h1>
             <!-- this tag is like <p>content</p> -->
             {{section.settings.paragraph_text}}
-            <a href="">
+            <a href="{{section.settings.btn_link}}">
                 <button>{{section.settings.btn_text}}</button>
             </a>
         </div>
@@ -36,7 +36,7 @@
   }
   .placehder{
   position:absolute;
-  height: 65vh;
+  height: 67vh;
   width:100vw
   }
   .video-container {
@@ -46,7 +46,7 @@
   .video-container video {
     object-fit: cover;
     width: 100vw;
-    height: 65vh;
+    height: 67vh;
   }
   .video-overlay{
     position: absolute;
@@ -61,22 +61,22 @@
   .video-content {
     /* background-color: rgb(221, 92, 17); */
     position: absolute;
-    color: white;
     height: 100%;
     width: 100%;
     display: flex;
   }
   .video-content h1 {
     margin: 0.5rem;
-    font-size: 4rem;
-    font-family: Masqualero;
+    font-family: {{section.settings.heading_font.family}}, {{section.settings.heading_font.fallback_families }};
+    font-style:{{section.settings.heading_font.style}};
+    font-size: {{section.settings.heading_font_size}}px;
+    color:{{section.settings.heading_color}};
     /* background-color: violet; */
     width: 100%;
-    text-align: center;
-    color:white;
+    text-align: {{section.settings.content_alignement}};
   }
   .text_container {
-    width: 60%;
+    width: 50%;
     opacity: 0.8;
     margin: auto;
     <!-- background: yellowgreen; -->
@@ -86,7 +86,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.8rem;
-    {% if section.settings.y_margin != 50 or  section.settings.x_margin != 27 %}
+    {% if section.settings.reset_xy == true %}
     margin-left: {{section.settings.y_margin}}rem;
     margin-top: {{section.settings.x_margin}}rem; 
     {% endif %}
@@ -94,10 +94,12 @@
   .video-content p {
     margin: 0.3rem;
     line-height: 1.5;
-    font-size: 1.5rem;
-    font-family: system-ui;
-    text-align:center
-  
+    font-size: {{section.settings.paragraph_font_size}}px;
+    font-family: {{section.settings.paragraph_font.family}}, {{section.settings.paragraph_font.fallback_families }};
+    font-style:{{section.settings.paragraph_font.style}};
+    text-align:{{section.settings.content_alignement}};
+    color:{{section.settings.paragraph_color}}
+
   }
   .video-content a {
     text-decoration: none;
@@ -105,7 +107,7 @@
     width: 100%;
     display: flex;
     margin: 1rem;
-    justify-content: center;
+    justify-content:{{section.settings.content_alignement}};
   }
   .video-content button {
   display:{% if section.settings.show_btn == true %}block {% else %} none{% endif %};
@@ -117,13 +119,17 @@
     cursor: pointer;
     padding: 15px;
     line-height: normal;
-    /* border: none; */
-    border-radius: 20px;
-    background: transparent;
-    border: 1px solid;
-    color: white;
+    font-family: {{section.settings.btn_font.family}}, {{section.settings.btn_font.fallback_families }};
+    font-style:{{section.settings.btn_font.style}};
+    color:{{section.settings.btn_title_color}};
+    border-radius:{{section.settings.btn_border_rdx}}px;
+    background: {{section.settings.btn_bg_color}};
+    border: 1px solid {{section.settings.btn_border-color}};
+   
   }
-  
+  .video-content a :hover{
+   background:#261e1459
+  }
   /* ************************ Mobile Design ******************* */
   @media only screen and (max-width: 770px) {
     .video-section {
@@ -142,11 +148,16 @@
       line-height: 1.5;
       font-size: 1.3rem;
     }
+    .video-content a{
+    margin: 1.2rem;
+    padding: 3px;
+    }
     .video-content button {
    
       width: 115px;
       font-size: 12px;
       padding: 8px;
+      margin:0;
     }
     .text_container {
       width: 80%;
@@ -202,11 +213,23 @@
                           "default": true
                         },
                         {
+                          "type": "url",
+                          "id": "btn_link",
+                          "label": "Button link"
+                        },
+                        {
                           "type": "text",
                           "id": "btn_text",
                           "label": "Button Title",
                           "default": "Shop Now"
                         },
+                        {
+                          "type": "checkbox",
+                          "id": "reset_xy",
+                          "label": "Use Margins",
+                          "info":"you can use margins X and Y to align the text content any place you want inside the video ",
+                          "default": false
+                        },   
                         {
                           "type": "range",
                           "id": "x_margin",
@@ -225,8 +248,28 @@
                           "step": 1,
                           "unit": "px",
                           "label": "Horizontal Margin",
-                          "default": 50
-                        },           
+                          "default": 45
+                        }, 
+                        {
+                          "type": "select",
+                          "id": "content_alignement",
+                          "label": "Text Position",
+                          "options": [
+                            {
+                              "value": "left",
+                              "label": "Left"
+                            },
+                            {
+                              "value": "center",
+                              "label": "Center"
+                            },
+                            {
+                              "value": "end",
+                              "label": "Right"
+                            }
+                          ],
+                          "default": "center"
+                        },
                         {
                           "type": "header",
                           "content": "Fonts And Colors"
@@ -238,40 +281,20 @@
                           "default": "helvetica_n4"
                         },
                         {
-                          "type": "select",
-                          "id": "heading_position",
-                          "label": "Heading Position",
-                          "options": [
-                            {
-                              "value": "left",
-                              "label": "Left"
-                            },
-                            {
-                              "value": "center",
-                              "label": "Center"
-                            },
-                            {
-                              "value": "end",
-                              "label": "Right"
-                            }
-                          ],
-                          "default": "center"
-                        },
-                        {
                           "type": "range",
                           "id": "heading_font_size",
-                          "min": 0,
-                          "max": 1,
-                          "step": 0.1,
+                          "min": 8,
+                          "max": 100,
+                          "step": 1,
                           "unit": "px",
                           "label": "Heading Size",
-                          "default": 0
+                          "default": 50
                         },
                         {
                           "type": "color",
                           "id": "heading_color",
                           "label": "Heading Color",
-                          "default": "#000000"
+                          "default": "#FFFFFF"
                         },                        
                         {
                           "type": "font_picker",
@@ -280,40 +303,20 @@
                           "default": "helvetica_n4"
                         },
                         {
-                          "type": "select",
-                          "id": "paragraph_position",
-                          "label": "Paragraph Position",
-                          "options": [
-                            {
-                              "value": "left",
-                              "label": "Left"
-                            },
-                            {
-                              "value": "center",
-                              "label": "Center"
-                            },
-                            {
-                              "value": "end",
-                              "label": "Right"
-                            }
-                          ],
-                          "default": "center"
-                        },
-                        {
                           "type": "range",
                           "id": "paragraph_font_size",
-                          "min": 0,
-                          "max": 1,
-                          "step": 0.1,
+                          "min": 8,
+                          "max": 100,
+                          "step": 1,
                           "unit": "px",
                           "label": "Paragraph Size",
-                          "default": 0
+                          "default": 20
                         },
                         {
                           "type": "color",
                           "id": "paragraph_color",
                           "label": "Paragraph Color",
-                          "default": "#000000"
+                          "default": "#FFFFFF"
                         },
                         {
                           "type": "font_picker",
@@ -322,42 +325,22 @@
                           "default": "helvetica_n4"
                         },
                         {
-                          "type": "select",
-                          "id": "button_position",
-                          "label": "Button Position",
-                          "options": [
-                            {
-                              "value": "left",
-                              "label": "Left"
-                            },
-                            {
-                              "value": "center",
-                              "label": "Center"
-                            },
-                            {
-                              "value": "end",
-                              "label": "Right"
-                            }
-                          ],
-                          "default": "center"
-                        },
-                        {
                           "type": "color",
-                          "id": "btn_color",
+                          "id": "btn_title_color",
                           "label": "Button Title Color",
-                          "default": "#000000"
+                          "default": "#FFFFFF"
                         },
                         {
                           "type": "color",
                           "id": "btn_border-color",
                           "label": "Button Border Color",
-                          "default": "#000000"
+                          "default": "#FFFFFF"
                         },
                         {
                           "type": "color_background",
                           "id": "btn_bg_color",
                           "label": "Button Background",
-                          "default": "linear-gradient(#ffffff, #000000)"
+                          "default": "transparent"
                         },
                         {
                           "type": "number",
