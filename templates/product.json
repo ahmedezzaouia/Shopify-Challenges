@@ -47,13 +47,13 @@
         "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a": {
           "type": "shopify:\/\/apps\/back-in-stock-restock-alerts\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
           "settings": {
-            "em_email_inline_button_display": true,
+            "em_email_inline_button_display": false,
             "em_email_float_button_display": false,
-            "em_email_button_color": "#FFFFFF",
+            "em_email_button_color": "#ffffff",
             "em_email_button_hover_color": "#202223",
             "em_email_button_background": "#333333",
             "em_email_button_hover_background": "#444444",
-            "em_email_button_border_color": "transparent",
+            "em_email_button_border_color": "rgba(0,0,0,0)",
             "em_email_button_hover_animation": false,
             "em_email_button_content": "EMAIL ME WHEN AVAILABLE",
             "font_size": 14,
