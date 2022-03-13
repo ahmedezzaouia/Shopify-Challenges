@@ -30,6 +30,7 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
+            "picker_type": "button"
           }
         },
         "quantity_selector": {
@@ -40,6 +41,37 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "show_dynamic_checkout": true
+          }
+        },
+        "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a": {
+          "type": "shopify:\/\/apps\/back-in-stock-restock-alerts\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
+          "settings": {
+            "em_email_inline_button_display": true,
+            "em_email_float_button_display": false,
+            "em_email_button_color": "#FFFFFF",
+            "em_email_button_hover_color": "#202223",
+            "em_email_button_background": "#333333",
+            "em_email_button_hover_background": "#444444",
+            "em_email_button_border_color": "transparent",
+            "em_email_button_hover_animation": false,
+            "em_email_button_content": "EMAIL ME WHEN AVAILABLE",
+            "font_size": 14,
+            "margin_top": 10,
+            "border_radius": 2,
+            "em_email_button_font_family": "inherit",
+            "em_email_button_font_weight": "inherit",
+            "em_email_float_button_top": 0,
+            "em_show_powered_by": "block",
+            "em_email_popup_btn_value": "EMAIL ME WHEN AVAILABLE",
+            "em_email_popup_header_text": "EMAIL ME WHEN AVAILABLE",
+            "em_email_popup_footer_text": "We will notify you when this product is back in stock. We will not share your email address with anybody.",
+            "em_email_popup_validation_text": "* Your email address is invalid.",
+            "em_email_popup_subscribed_text": "* You have already subscribed this product.",
+            "em_email_popup_name_placeholder_text": "Your name",
+            "em_email_popup_placeholder_text": "Email address...",
+            "em_email_success_frame_title": "Successfully subscribed!",
+            "em_email_success_frame_content": "We will send you an email when this product is back in stock."
           }
         },
         "description": {
@@ -51,33 +83,42 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Materials",
-            "icon": "leather"
+            "icon": "leather",
+            "content": "",
+            "page": ""
           }
         },
         "collapsible-row-1": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Shipping & Returns",
-            "icon": "truck"
+            "icon": "truck",
+            "content": "",
+            "page": ""
           }
         },
         "collapsible-row-2": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Dimensions",
-            "icon": "ruler"
+            "icon": "ruler",
+            "content": "",
+            "page": ""
           }
         },
         "collapsible-row-3": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Care Instructions",
-            "icon": "heart"
+            "icon": "heart",
+            "content": "",
+            "page": ""
           }
         },
         "share": {
           "type": "share",
           "settings": {
+            "share_label": "Share"
           }
         }
       },
@@ -89,6 +130,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a",
         "description",
         "collapsible-row-0",
         "collapsible-row-1",
@@ -97,7 +139,13 @@
         "share"
       ],
       "settings": {
+        "enable_sticky_info": true,
+        "gallery_layout": "stacked",
+        "media_size": "large",
+        "mobile_thumbnails": "hide",
         "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
         "padding_bottom": 12
       }
     },
@@ -107,11 +155,15 @@
         "image-with-text-0": {
           "type": "heading",
           "settings": {
+            "heading": "Image with text",
+            "heading_size": "h1"
           }
         },
         "image-with-text-1": {
           "type": "text",
           "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "text_style": "body"
           }
         }
       },
@@ -121,8 +173,15 @@
       ],
       "settings": {
         "height": "small",
+        "desktop_image_width": "medium",
         "layout": "text_first",
-        "color_scheme": "background-2"
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-2",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "multicolumn": {
@@ -132,14 +191,18 @@
           "type": "column",
           "settings": {
             "title": "Free Shipping",
-            "link_label": ""
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
           }
         },
         "column-1": {
           "type": "column",
           "settings": {
             "title": "Hassle-Free Exchanges",
-            "link_label": ""
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
@@ -149,15 +212,28 @@
       ],
       "settings": {
         "title": "",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "column_alignment": "left",
         "background_style": "none",
-        "button_label": ""
+        "button_label": "",
+        "button_link": "",
+        "swipe_on_mobile": false,
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
+        "heading": "You may also like",
+        "color_scheme": "background-1",
         "image_ratio": "square",
         "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
         "padding_bottom": 28
       }
     }
