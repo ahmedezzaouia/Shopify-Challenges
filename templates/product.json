@@ -3,6 +3,36 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a": {
+          "type": "shopify:\/\/apps\/back-in-stock-restock-alerts\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
+          "settings": {
+            "em_email_inline_button_display": false,
+            "em_email_float_button_display": false,
+            "em_email_button_color": "#ffffff",
+            "em_email_button_hover_color": "#202223",
+            "em_email_button_background": "#333333",
+            "em_email_button_hover_background": "#444444",
+            "em_email_button_border_color": "rgba(0,0,0,0)",
+            "em_email_button_hover_animation": false,
+            "em_email_button_content": "EMAIL ME WHEN AVAILABLE",
+            "font_size": 14,
+            "margin_top": 10,
+            "border_radius": 2,
+            "em_email_button_font_family": "inherit",
+            "em_email_button_font_weight": "inherit",
+            "em_email_float_button_top": 0,
+            "em_show_powered_by": "block",
+            "em_email_popup_btn_value": "EMAIL ME WHEN AVAILABLE",
+            "em_email_popup_header_text": "EMAIL ME WHEN AVAILABLE",
+            "em_email_popup_footer_text": "We will notify you when this product is back in stock. We will not share your email address with anybody.",
+            "em_email_popup_validation_text": "* Your email address is invalid.",
+            "em_email_popup_subscribed_text": "* You have already subscribed this product.",
+            "em_email_popup_name_placeholder_text": "Your name",
+            "em_email_popup_placeholder_text": "Email address...",
+            "em_email_success_frame_title": "Successfully subscribed!",
+            "em_email_success_frame_content": "We will send you an email when this product is back in stock."
+          }
+        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -42,36 +72,6 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true
-          }
-        },
-        "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a": {
-          "type": "shopify:\/\/apps\/back-in-stock-restock-alerts\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
-          "settings": {
-            "em_email_inline_button_display": false,
-            "em_email_float_button_display": false,
-            "em_email_button_color": "#ffffff",
-            "em_email_button_hover_color": "#202223",
-            "em_email_button_background": "#333333",
-            "em_email_button_hover_background": "#444444",
-            "em_email_button_border_color": "rgba(0,0,0,0)",
-            "em_email_button_hover_animation": false,
-            "em_email_button_content": "EMAIL ME WHEN AVAILABLE",
-            "font_size": 14,
-            "margin_top": 10,
-            "border_radius": 2,
-            "em_email_button_font_family": "inherit",
-            "em_email_button_font_weight": "inherit",
-            "em_email_float_button_top": 0,
-            "em_show_powered_by": "block",
-            "em_email_popup_btn_value": "EMAIL ME WHEN AVAILABLE",
-            "em_email_popup_header_text": "EMAIL ME WHEN AVAILABLE",
-            "em_email_popup_footer_text": "We will notify you when this product is back in stock. We will not share your email address with anybody.",
-            "em_email_popup_validation_text": "* Your email address is invalid.",
-            "em_email_popup_subscribed_text": "* You have already subscribed this product.",
-            "em_email_popup_name_placeholder_text": "Your name",
-            "em_email_popup_placeholder_text": "Email address...",
-            "em_email_success_frame_title": "Successfully subscribed!",
-            "em_email_success_frame_content": "We will send you an email when this product is back in stock."
           }
         },
         "description": {
@@ -123,6 +123,7 @@
         }
       },
       "block_order": [
+        "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a",
         "vendor",
         "title",
         "caption",
@@ -130,7 +131,6 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a",
         "description",
         "collapsible-row-0",
         "collapsible-row-1",
@@ -236,54 +236,12 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
-    },
-    "1647204280bc6b9410": {
-      "type": "apps",
-      "blocks": {
-        "b2cdf3f0-04f0-4b67-ae55-20f948b13ada": {
-          "type": "shopify:\/\/apps\/back-in-stock-restock-alerts\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
-          "settings": {
-            "em_email_inline_button_display": true,
-            "em_email_float_button_display": false,
-            "em_email_button_color": "#FFFFFF",
-            "em_email_button_hover_color": "#202223",
-            "em_email_button_background": "#333333",
-            "em_email_button_hover_background": "#444444",
-            "em_email_button_border_color": "transparent",
-            "em_email_button_hover_animation": false,
-            "em_email_button_content": "EMAIL ME WHEN AVAILABLE",
-            "font_size": 14,
-            "margin_top": 10,
-            "border_radius": 2,
-            "em_email_button_font_family": "inherit",
-            "em_email_button_font_weight": "inherit",
-            "em_email_float_button_top": 0,
-            "em_show_powered_by": "block",
-            "em_email_popup_btn_value": "EMAIL ME WHEN AVAILABLE",
-            "em_email_popup_header_text": "EMAIL ME WHEN AVAILABLE",
-            "em_email_popup_footer_text": "We will notify you when this product is back in stock. We will not share your email address with anybody.",
-            "em_email_popup_validation_text": "* Your email address is invalid.",
-            "em_email_popup_subscribed_text": "* You have already subscribed this product.",
-            "em_email_popup_name_placeholder_text": "Your name",
-            "em_email_popup_placeholder_text": "Email address...",
-            "em_email_success_frame_title": "Successfully subscribed!",
-            "em_email_success_frame_content": "We will send you an email when this product is back in stock."
-          }
-        }
-      },
-      "block_order": [
-        "b2cdf3f0-04f0-4b67-ae55-20f948b13ada"
-      ],
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
     "main",
     "image-with-text",
     "multicolumn",
-    "product-recommendations",
-    "1647204280bc6b9410"
+    "product-recommendations"
   ]
 }
