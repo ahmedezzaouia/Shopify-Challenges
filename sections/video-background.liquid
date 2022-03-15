@@ -1,10 +1,7 @@
 <section class="video-section">
     <div class="video-container">
         <div class="video-overlay"><span></span></div>
-        {% if section.settings.video_link == nil %}
-            <img class="placehder"  src="https://cdn.msgsndr.com/location%2FxrssH7q94k98ahIqxBEi%2Fimages%2F518964c3-25d4-4d5c-aa4f-321446b7d381.jpeg?alt=media" alt="">
-         {% endif %}
-            <video autoplay loop muted>
+            <video autoplay loop muted poster="https://{{section.settings.poster_img | image_url}}">
               <source src="{{section.settings.video_link}}" type="video/mp4">
             </video>
     </div>
@@ -21,32 +18,42 @@
     </div>
 </section>
 
-<!-- ************************** CSS Section *********************** -->
+<!-- ************************* CSS Section *********************** -->
 
 {% style %}
+.show-header{
+  display:flex;
+
+}
+.hide-header{
+  display:none;
+
+}
 .video-section {
     position: relative;
     width: 100%;
-    height: 750px;
+    height: {{section.settings.video_height}}px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-     background-color: blueviolet; 
+    {% if section.settings.video_link == nil %}
+      
+    background:url("https://eu.vibram.com/on/demandware.static/-/Sites-VibramEU-Library/default/dwda073688/video-placeholder.png") 
+    {% endif %}
   }
-  .placehder{
-  position:absolute;
-  height: 67vh;
-  width:100vw
-  }
+  
   .video-container {
     justify-content: center;
     align-items: center;
+	height:100%;
+    width: 100%;
   }
   .video-container video {
     object-fit: cover;
-    width: 100vw;
-    height: 67vh;
+	height:100%;
+    width: 100%;
+   
   }
   .video-overlay{
     position: absolute;
@@ -76,10 +83,9 @@
     text-align: {{section.settings.content_alignement}};
   }
   .text_container {
-    width: 50%;
+    width: {{section.settings.text_block_size}}%;
     opacity: 0.8;
-    margin: auto;
-    <!-- background: yellowgreen; -->
+    margin: auto !important;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -98,7 +104,8 @@
     font-family: {{section.settings.paragraph_font.family}}, {{section.settings.paragraph_font.fallback_families }};
     font-style:{{section.settings.paragraph_font.style}};
     text-align:{{section.settings.content_alignement}};
-    color:{{section.settings.paragraph_color}}
+    color:{{section.settings.paragraph_color}};
+	width:100%;
 
   }
   .video-content a {
@@ -111,7 +118,7 @@
   }
   .video-content button {
   display:{% if section.settings.show_btn == true %}block {% else %} none{% endif %};
-    margin: 0.8rem;
+    margin: 0.8rem 0;
     width: 170px;
     text-align: center;
     font-size: 14px;
@@ -130,38 +137,48 @@
   .video-content a :hover{
    background:#261e1459
   }
+
+    /* ************************ Large Screen ******************* */
+  @media only screen and (min-width: 1900px) {
+    .video-container video {
+      width: 100vw;
+    }
+  }
   /* ************************ Mobile Design ******************* */
   @media only screen and (max-width: 770px) {
     .video-section {
-      height: 400px;
+      height: {{section.settings.video_height_mobile}}px;
     }
-    .placehder{
-      height: 49vh;
-    }
-    .video-container video {
-      height: 49vh;
-    }
+   
     .video-content h1 {
-      font-size: 2.68rem;
+      font-size: {{section.settings.heading_font_size_mobile}}px;
+      text-align:{{section.settings.content_alignement_mobile}}
     }
     .video-content p {
       line-height: 1.5;
-      font-size: 1.3rem;
+      font-size: {{section.settings.paragraph_font_size_mobile}}px;
+      text-align:{{section.settings.content_alignement_mobile}}
+
     }
     .video-content a{
     margin: 1.2rem;
     padding: 3px;
-    }
+    justify-content:{{section.settings.content_alignement_mobile}};
+  }
     .video-content button {
-   
       width: 115px;
       font-size: 12px;
       padding: 8px;
       margin:0;
+
+
     }
     .text_container {
       width: 80%;
       margin: auto;
+      margin-top: 90px;
+     
+
     }
   }
   
@@ -179,10 +196,36 @@
                           "label": "Video link"
                         },
                         {
+                          "type": "image_picker",
+                          "id": "poster_img",
+                          "label": "Thumbnail Image",
+                          "info":"This helps When The Connection is Slow So it's good  to Show an Image before The Video loading"
+                        },                        
+                        {
                           "type": "color_background",
                           "id": "overlay-bg_color",
                           "label": "Overlay Background Color",
                           "default": "linear-gradient(#ffffff, #000000)"
+                        },
+                        {
+                          "type": "range",
+                          "id": "video_height",
+                          "min": 0,
+                          "max": 1500,
+                          "step": 15,
+                          "unit": "px",
+                          "label": "Section Height On Desktop",
+                          "default": 750
+                        },
+                        {
+                          "type": "range",
+                          "id": "video_height_mobile",
+                          "min": 100,
+                          "max": 1500,
+                          "step": 20,
+                          "unit": "px",
+                          "label": "Section Height On Mobile",
+                          "default": 400
                         },
                         {
                           "type": "range",
@@ -193,6 +236,16 @@
                           "unit": "px",
                           "label": "Overlay Size",
                           "default": 0
+                        },
+                        {
+                            "type": "range",
+                            "id": "text_block_size",
+                            "min": 10,
+                            "max": 100,
+                            "step": 5,
+                            "unit": "%",
+                            "label": "Text Block Width",
+                            "default": 50
                         },
                         {
                           "type": "text",
@@ -253,7 +306,27 @@
                         {
                           "type": "select",
                           "id": "content_alignement",
-                          "label": "Text Position",
+                          "label": "Align Text Block On Desktop",
+                          "options": [
+                            {
+                              "value": "left",
+                              "label": "Left"
+                            },
+                            {
+                              "value": "center",
+                              "label": "Center"
+                            },
+                            {
+                              "value": "end",
+                              "label": "Right"
+                            }
+                          ],
+                          "default": "center"
+                        },
+                        {
+                          "type": "select",
+                          "id": "content_alignement_mobile",
+                          "label": "Align Text Block On Mobile",
                           "options": [
                             {
                               "value": "left",
@@ -287,8 +360,18 @@
                           "max": 100,
                           "step": 1,
                           "unit": "px",
-                          "label": "Heading Size",
+                          "label": "Heading Size On Desktop",
                           "default": 50
+                        },
+						{
+                          "type": "range",
+                          "id": "heading_font_size_mobile",
+                          "min": 8,
+                          "max": 100,
+                          "step": 1,
+                          "unit": "px",
+                          "label": "Heading Size On Mobile",
+                          "default": 32
                         },
                         {
                           "type": "color",
@@ -309,8 +392,18 @@
                           "max": 100,
                           "step": 1,
                           "unit": "px",
-                          "label": "Paragraph Size",
+                          "label": "Paragraph Size On Desktop",
                           "default": 20
+                        },
+						{
+                          "type": "range",
+                          "id": "paragraph_font_size_mobile",
+                          "min": 8,
+                          "max": 100,
+                          "step": 1,
+                          "unit": "px",
+                          "label": "Paragraph Size On Mobile",
+                          "default": 15
                         },
                         {
                           "type": "color",
@@ -361,3 +454,180 @@
    ]
 }
 {% endschema %}
+
+<!-- ************ script to hide the header After Scroll to botttom *********** -->
+
+      <script>
+        
+        
+         var styles = `
+                   
+                    .weglot-options{
+                   	 color:white;
+                    }
+					.navlink{
+					  color:white;
+
+					}
+
+					header a{
+						color:white
+					}
+                    weglot-selector__es::after{
+                   	 content:"";
+                    }
+                  #shopify-section-header{
+                    margin:0;
+                    padding:0;
+					position: absolute;
+    				width: 100vw;
+                  }
+                  header{
+                   position: unset !important;
+                    
+                  }
+                  .header__mobile{
+				   position: relative;
+   				   z-index: 5;
+    			   background: transparent;
+				  }
+				  .header__desktop__bar__l,.header__desktop__bar__r{
+					
+					z-index:5;
+
+				 }
+
+                  .hamburger__lines span{
+                    background-color:white
+                  }
+
+                .lazyloaded.logo__img--color{
+               	 opacity:0
+                
+				}
+				.logo__img--transparent{
+				opacity:1
+                    
+
+				}
+              .header__dropdown{
+              	top:85px
+              }
+              .layout--grid .grid__heading-holder{
+              	z-index:1
+              }
+              .header__cart__status{
+//               	margin:8px
+              }
+
+`
+          var styleSheet = document.createElement("style")
+                styleSheet.innerText = styles
+                document.head.appendChild(styleSheet)
+         
+          
+                const setHeaderTrsp = ()=>{
+                
+                 document.head.appendChild(styleSheet)
+                                
+                                var nodes = document.querySelectorAll('.navlink');
+                                for(var i=0; i<nodes.length; i++) {
+                                   nodes[i].style.color= 'white'
+                                   console.dir(nodes[i])
+                                }
+                                
+                                var nodes = document.querySelectorAll('header a');
+                                for(var i=0; i<nodes.length; i++) {
+                                   nodes[i].style.color= 'white'
+                                }
+                                const languageslist = document.querySelector(".weglot-options");
+                                languageslist.style.color= 'white';
+                
+                }
+               
+        
+        		const unsetHeaderTrsp = () => {
+          
+        			 document.head.removeChild(styleSheet)
+                                var nodes = document.querySelectorAll('.navlink');
+                                for(var i=0; i<nodes.length; i++) {
+                                   nodes[i].style.color= 'black'
+                                }
+                                
+                                var nodes = document.querySelectorAll('header a');
+                                for(var i=0; i<nodes.length; i++) {
+                                   nodes[i].style.color= 'black'
+                                }
+                                const languageslist = document.querySelector(".weglot-options");
+                                languageslist.style.color= 'black';
+                                
+ 
+                } 
+          
+        
+
+                const header = document.querySelector('header');
+                window.addEventListener('scroll',()=>{
+                              if(window.pageYOffset > 0)
+                              {
+                               unsetHeaderTrsp();
+                              
+                              }
+                              else
+                              {
+                               
+                                setHeaderTrsp();
+                               
+                              }
+                  })
+                  
+                  
+                   const menu_items = document.querySelectorAll(".menu__item");
+        
+                      for(let i = 0; i < menu_items.length; i++) {
+                                          
+                             
+                          menu_items[i].addEventListener("mouseenter",()=>
+                                  {
+                                   unsetHeaderTrsp();
+                                  })
+                                  
+                         
+                      }
+                      
+                      const videohover = document.querySelector(".video-content");
+                      videohover.addEventListener("mouseenter",()=>
+                                  {
+                                   
+                                   setHeaderTrsp();
+        
+                                  })
+
+        
+                 	document.querySelector(".hamburger__lines").addEventListener("click",()=>{
+                                                                               
+                     unsetHeaderTrsp();
+
+        			})
+                    
+                    document.querySelector("button.drawer--visible").addEventListener("click",()=>{
+                                                                               
+                     setHeaderTrsp();
+ 
+        			})
+                    
+                  
+                    
+
+     </script>
+
+
+<!-- ***************** Include header in Section ************** -->
+
+            {% style %}
+
+             .drawer__menu {
+    			padding-top: 10px;
+				}
+            {% endstyle %}
+
