@@ -3,7 +3,7 @@
     "1647375425e8ec6ce0": {
       "type": "background-video",
       "settings": {
-        "video_link": "",
+        "video_link": "https:\/\/cdn.shopify.com\/s\/files\/1\/0266\/2688\/3633\/files\/Mi_video_122.mov?v=1647342053",
         "overlay-bg_color": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 1) 100%)",
         "video_height": 750,
         "overlay_size": 0,
@@ -19,19 +19,20 @@
         "content_alignement": "center",
         "heading_font": "helvetica_n4",
         "heading_font_size": 50,
-        "heading_color": "#FFFFFF",
+        "heading_color": "#ffffff",
         "paragraph_font": "helvetica_n4",
         "paragraph_font_size": 20,
-        "paragraph_color": "#FFFFFF",
+        "paragraph_color": "#ffffff",
         "btn_font": "helvetica_n4",
-        "btn_title_color": "#FFFFFF",
-        "btn_border-color": "#FFFFFF",
+        "btn_title_color": "#ffffff",
+        "btn_border-color": "#ffffff",
         "btn_bg_color": "transparent",
         "btn_border_rdx": 20
       }
     },
     "image_banner": {
       "type": "image-banner",
+      "disabled": true,
       "blocks": {
         "heading": {
           "type": "heading",
