@@ -1,14 +1,21 @@
 <section class="video-section">
     <div class="video-container">
         <div class="video-overlay"><span></span></div>
-            <video autoplay loop muted poster="https://{{section.settings.poster_img | image_url}}">
+      
+            <video id="video-desktop" autoplay loop muted poster="https://{{section.settings.poster_img | image_url}}">
               <source src="{{section.settings.video_link}}" type="video/mp4">
             </video>
+      
+      		<video id="video-mobile" autoplay loop muted poster="https://{{section.settings.poster_img_mobile | image_url}}">
+              <source src="{{section.settings.video_link_mobile}}" type="video/mp4">
+            </video>
+      
+     
     </div>
 
     <div class="video-content">
         <div class="text_container">
-            <h1>{{section.settings.header_text}}</h1>
+            <h2>{{section.settings.header_text}}</h2>
             <!-- this tag is like <p>content</p> -->
             {{section.settings.paragraph_text}}
             <a href="{{section.settings.btn_link}}">
@@ -21,6 +28,15 @@
 <!-- ************************* CSS Section *********************** -->
 
 {% style %}
+
+
+	#video-mobile{
+		display:none;
+	}
+	#video-desktop{
+	  	display:block;
+	}
+
 .show-header{
   display:flex;
 
@@ -72,13 +88,12 @@
     width: 100%;
     display: flex;
   }
-  .video-content h1 {
+  .video-content h2 {
     margin: 0.5rem;
-    font-family: {{section.settings.heading_font.family}}, {{section.settings.heading_font.fallback_families }};
+    font-family: Ivy Mode !important;
     font-style:{{section.settings.heading_font.style}};
     font-size: {{section.settings.heading_font_size}}px;
     color:{{section.settings.heading_color}};
-    /* background-color: violet; */
     width: 100%;
     text-align: {{section.settings.content_alignement}};
   }
@@ -144,13 +159,22 @@
       width: 100vw;
     }
   }
+
+
   /* ************************ Mobile Design ******************* */
   @media only screen and (max-width: 770px) {
+
+	#video-mobile{
+		display:block;
+	}
+	#video-desktop{
+	  	display:none;
+	}	
     .video-section {
       height: {{section.settings.video_height_mobile}}px;
     }
    
-    .video-content h1 {
+    .video-content h2 {
       font-size: {{section.settings.heading_font_size_mobile}}px;
       text-align:{{section.settings.content_alignement_mobile}}
     }
@@ -193,14 +217,25 @@
                         {
                           "type": "url",
                           "id": "video_link",
-                          "label": "Video link"
+                          "label": "Video link On Desktop"
+                        },
+						{
+                          "type": "url",
+                          "id": "video_link_mobile",
+                          "label": "Video link On Mobile"
                         },
                         {
                           "type": "image_picker",
                           "id": "poster_img",
-                          "label": "Thumbnail Image",
+                          "label": "Thumbnail Image On Desktop",
                           "info":"This helps When The Connection is Slow So it's good  to Show an Image before The Video loading"
-                        },                        
+                        },    
+						{					
+                          "type": "image_picker",
+                          "id": "poster_img_mobile",
+                          "label": "Thumbnail Image On Mobile",
+                          "info":"This helps When The Connection is Slow So it's good  to Show an Image before The Video loading"
+                        }, 
                         {
                           "type": "color_background",
                           "id": "overlay-bg_color",
@@ -347,12 +382,7 @@
                           "type": "header",
                           "content": "Fonts And Colors"
                         },
-                        {
-                          "type": "font_picker",
-                          "id": "heading_font",
-                          "label": "Heading font",
-                          "default": "helvetica_n4"
-                        },
+                  
                         {
                           "type": "range",
                           "id": "heading_font_size",
@@ -455,9 +485,17 @@
 }
 {% endschema %}
 
-<!-- ************ script to hide the header After Scroll to botttom *********** -->
 
-      <script>
+
+
+
+<!-- ************ script *********** -->
+
+      <script defer>
+        
+        
+             
+
         
         
          var styles = `
@@ -517,23 +555,38 @@
               	z-index:1
               }
               .header__cart__status{
-//               	margin:8px
+              	margin:8px
               }
 
 `
           var styleSheet = document.createElement("style")
-                styleSheet.innerText = styles
-                document.head.appendChild(styleSheet)
-         
+          styleSheet.innerText = styles
+          document.head.appendChild(styleSheet)
+                
+     	  function checkIfIncluded(file) {
+              var links = document.getElementsByTagName("link");
+              for(var i = 0; i < links.length; i++) {
+                  if (links[i].href.substr(-file.length) == file)
+                      return true;
+              }
+
+              var scripts = document.getElementsByTagName("script");
+              for(var i = 0; i < scripts.length; i++) {
+                  if (scripts[i].src.substr(-file.length) == file)
+                      return true;
+              }
+
+              return false;
+			}
           
                 const setHeaderTrsp = ()=>{
                 
-                 document.head.appendChild(styleSheet)
+          
+                 document.head.appendChild(styleSheet);
                                 
                                 var nodes = document.querySelectorAll('.navlink');
                                 for(var i=0; i<nodes.length; i++) {
                                    nodes[i].style.color= 'white'
-                                   console.dir(nodes[i])
                                 }
                                 
                                 var nodes = document.querySelectorAll('header a');
@@ -547,8 +600,11 @@
                
         
         		const unsetHeaderTrsp = () => {
-          
-        			 document.head.removeChild(styleSheet)
+               
+                   
+                     document.head.removeChild(styleSheet);
+                  
+                
                                 var nodes = document.querySelectorAll('.navlink');
                                 for(var i=0; i<nodes.length; i++) {
                                    nodes[i].style.color= 'black'
@@ -561,7 +617,7 @@
                                 const languageslist = document.querySelector(".weglot-options");
                                 languageslist.style.color= 'black';
                                 
- 
+                  
                 } 
           
         
@@ -570,7 +626,9 @@
                 window.addEventListener('scroll',()=>{
                               if(window.pageYOffset > 0)
                               {
-                               unsetHeaderTrsp();
+                                if(checkIfIncluded("styleSheet.css")=== true){
+                              	 unsetHeaderTrsp();
+                                }
                               
                               }
                               else
@@ -617,17 +675,19 @@
         			})
                     
                   
-                    
+                     
 
      </script>
 
 
-<!-- ***************** Include header in Section ************** -->
 
             {% style %}
-
+video::-webkit-media-controls {
+  display:none !important;
+}
              .drawer__menu {
     			padding-top: 10px;
 				}
             {% endstyle %}
+
 
