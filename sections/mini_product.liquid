@@ -39,170 +39,178 @@
 
 
   {% javascript %}
+let options = ["", "", ""]
+const product_anchors = document.getElementsByClassName('full-unstyled-link');
+const go_product_page = document.querySelector('.go-product-page');
+const product_container = document.querySelector('.product_container')
+const mini_product = document.querySelector('.mini-product')
+const close_btn = document.querySelector('.close i');
+// <!--product element here-- >
+const pdt_img = document.querySelector('.media img');
+const pdt_title = document.querySelector('.mini-product .text_box .title');
+const pdt_description = document.querySelector('.mini-product .description');
+const pdt_price = document.querySelector('.mini-product .payment span');
+const options_container = document.querySelector('.mini-product .options_container');
 
-  const product_anchors = document.getElementsByClassName('full-unstyled-link');
-  const go_product_page = document.querySelector('.go-product-page');
-  const product_container = document.querySelector('.product_container')
-  const mini_product = document.querySelector('.mini-product')
-  const close_btn = document.querySelector('.close i');
-  //
-  <!-- product element here  -->
-  const pdt_img = document.querySelector('.media img');
-  const pdt_title = document.querySelector('.mini-product .text_box .title');
-  const pdt_description = document.querySelector('.mini-product .description');
-  const pdt_price = document.querySelector('.mini-product .payment span');
-  const options_container = document.querySelector('.mini-product .options_container');
-
-  // variants global variables
-  let option1 = ''
-  let option2 = ''
-  let option3 = ''
+// variants global variables
 
 
-  function close_mini_product() {
-  product_container.style.display = 'none'
-  mini_product.style.display = 'none'
-  }
+function close_mini_product() {
+    product_container.style.display = 'none'
+    mini_product.style.display = 'none'
+}
 
 
-  async function open_mini_product(href) {
-  product_container.style.display = 'flex'
-  mini_product.style.display = 'flex'
+async function open_mini_product(href) {
+    product_container.style.display = 'flex'
+    mini_product.style.display = 'flex'
 
-  // set product data
-  const res = await fetch(href+'.json');
-  const productData = await res.json();
-  console.log(productData)
-  pdt_img.src = productData.product?.image?.src
-  pdt_title.innerHTML = productData.product.title;
-  pdt_description.innerHTML = productData.product.body_html
-  pdt_price.innerHTML = productData.product.variants[0].price + "$"
-  go_product_page.href = href
+    // set product data
+    const res = await fetch(href + '.json');
+    const productData = await res.json();
+    console.log(productData)
+    pdt_img.src = productData.product?.image?.src
+    pdt_title.innerHTML = productData.product.title;
+    pdt_description.innerHTML = productData.product.body_html
+    pdt_price.innerHTML = productData.product.variants[0].price + "$"
+    go_product_page.href = href
 
-  function change_variant(e,option_name,variants){
-  console.log(e.target.innerHTML);
-  console.log(option_name);
-  console.log(productData.product.variants);
-
-  if (option_name === 'Color'){
-        option1 = e.target.innerHTML
-        const elemst = document.querySelectorAll('.color-item');
-        const icon = document.createElement("i");
-        icon.classList.add('fa-solid')
-        icon.classList.add('fa-check')
-        e.target.innerHTML = ''
-        icon.style.color= 'black'
-        e.target.appendChild(icon);
-        elemst.forEach(item =>{
-          if (item !== e.target)
-          {
-          item.innerHTML = "&nbsp"
-          }
-          })
-  }
-  else if(option_name === 'Size')
-  {
-    option2 = e.target.innerHTML
-    const elemst = document.querySelectorAll('.size-item');
-    e.target.style.background = '#00000054';
-    e.target.style.color = 'white';
-    elemst.forEach(item =>{
-      if (item !== e.target)
-      {
-    
-        item.style.background = 'white';
-        item.style.color = 'black';
-      }
-      })
-    
-  }
-  else
-  {
-    option3 = e.target.innerHTML
+    function select_variant() {
+        productData.product.variants.forEach(vrt => {
+            let counter = 0;
+            options.forEach(op => {
+                console.log(op)
+                if (op === vrt.option1 || op === vrt.option2 || op === vrt.option3) {
+                    counter++;
+                }
+            })
+            console.log('counter = ', counter)
+            console.log('length = ', productData.product.options.length)
+            console.log('options = ', options)
+            if (counter === productData.product.options.length) {
+                // this is the selected variant
+                pdt_price.innerHTML = vrt.price + "$"
+                const image  =  productData.product.images.find(img=>img.id === vrt.image_id)
+                if(image)
+                  pdt_img.src = image.src
+                counter = 0;
+                return ;
+              }
+        })
 
 
-  }
+    }
 
- 
+    function change_variant(e, option_name, variants) {
 
-  }
+        console.log(e.target.innerHTML);
+        console.log(option_name);
+        console.log(productData.product.variants);
 
-  // set product options;
-  options_container.innerHTML = '';
+        if (option_name === 'Color') {
+            options[0] = e.target.style.backgroundColor
+            const elemst = document.querySelectorAll('.color-item');
+            const icon = document.createElement("i");
+            icon.classList.add('fa-solid')
+            icon.classList.add('fa-check')
+            e.target.innerHTML = ''
+            icon.style.color = 'black'
+            e.target.appendChild(icon);
+            elemst.forEach(item => {
+                if (item !== e.target) {
+                    item.innerHTML = "&nbsp"
+                }
+            })
+        } else if (option_name === 'Size') {
+            options[1] = e.target.innerHTML
+            const elemst = document.querySelectorAll('.size-item');
+            e.target.style.background = '#00000054';
+            e.target.style.color = 'white';
+            elemst.forEach(item => {
+                if (item !== e.target) {
 
-  productData.product.options.forEach(el=>{
-  console.log(el)
-  const option_title = document.createElement("h5");
-  const option = document.createElement("div");
-  option.classList.add('option')
-  option_title.classList.add('option-title')
-  option_title.innerHTML = el.name;
+                    item.style.background = 'white';
+                    item.style.color = 'black';
+                }
+            })
 
-  options_container.appendChild(option_title)
-  options_container.appendChild(option)
+        } else {
+            options[2] = e.target.innerHTML
 
-
-  el.values.forEach(val =>
-  {
-
-  if(el.name == "Color")
-  {
-  const color_item = document.createElement("div");
-  option.appendChild(color_item);
-  color_item.classList.add('color-item')
-  color_item.style.backgroundColor = val
-  color_item.innerHTML = "&nbsp";
-  if (val === productData.product.variants[0].option1 || val === productData.product.variants[0].option2)
-  {
-
-  const icon = document.createElement("i");
-  icon.classList.add('fa-solid')
-  icon.classList.add('fa-check')
-  color_item.innerHTML = ''
-  icon.style.color= 'black'
-  color_item.appendChild(icon);
-
-  }
-  color_item.addEventListener('click', (e)=>change_variant(e, 'Color'))
-  }
-
-  else
-  {
-  const size_item = document.createElement("div");
-  option.appendChild(size_item);
-  size_item.classList.add('size-item')
-  size_item.innerHTML = val
-  if (val === productData.product.variants[0].option1 || val === productData.product.variants[0].option2)
-  {
-
-  size_item.style.background = '#00000054';
-  size_item.style.color = 'white';
-
-  }
-  size_item.addEventListener('click', (e)=>change_variant(e, 'Size'))
-
-  }
-  })
+        }
+        select_variant();
 
 
+    }
 
-  })
+    // set product options;
+    options_container.innerHTML = '';
 
-  }
-  close_mini_product();
-  close_btn.addEventListener('click', close_mini_product)
-  //product_container.addEventListener('click', close_mini_product)
+    productData.product.options.forEach(el => {
+        console.log(el)
+        const option_title = document.createElement("h5");
+        const option = document.createElement("div");
+        option.classList.add('option')
+        option_title.classList.add('option-title')
+        option_title.innerHTML = el.name;
 
-  console.dir(product_anchors)
-  console.dir(go_product_page)
+        options_container.appendChild(option_title)
+        options_container.appendChild(option)
 
-  for (let elm of product_anchors) {
-  console.dir(elm)
-  const href = elm.href;
-  elm.href ="javascript:void(0)"
-  elm.addEventListener('click', () => open_mini_product(href))
-  }
 
+        el.values.forEach(val => {
+
+            if (el.name == "Color") {
+                const color_item = document.createElement("div");
+                option.appendChild(color_item);
+                color_item.classList.add('color-item')
+                color_item.style.backgroundColor = val
+                color_item.innerHTML = "&nbsp";
+                if (val === productData.product.variants[0].option1 || val === productData.product.variants[0].option2) {
+
+                    const icon = document.createElement("i");
+                    icon.classList.add('fa-solid')
+                    icon.classList.add('fa-check')
+                    color_item.innerHTML = ''
+                    icon.style.color = 'black'
+                    color_item.appendChild(icon);
+
+                }
+                color_item.addEventListener('click', (e) => change_variant(e, 'Color'))
+            } else {
+                const size_item = document.createElement("div");
+                option.appendChild(size_item);
+                size_item.classList.add('size-item')
+                size_item.innerHTML = val
+                if (val === productData.product.variants[0].option1 || val === productData.product.variants[0].option2) {
+
+                    size_item.style.background = '#00000054';
+                    size_item.style.color = 'white';
+
+                }
+                size_item.addEventListener('click', (e) => change_variant(e, 'Size'))
+
+            }
+        })
+
+
+
+    })
+
+}
+close_mini_product();
+close_btn.addEventListener('click', close_mini_product)
+//product_container.addEventListener('click', close_mini_product)
+
+console.dir(product_anchors)
+console.dir(go_product_page)
+
+for (let elm of product_anchors) {
+    console.dir(elm)
+    const href = elm.href;
+    elm.href = "javascript:void(0)"
+    elm.addEventListener('click', () => open_mini_product(href))
+}
   {% endjavascript %}
 
 
