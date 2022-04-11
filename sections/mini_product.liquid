@@ -21,263 +21,375 @@
         content.
         Lorem ipsum may be used as a placeholder before the final copy is available.</p>
       <div class="divider">&nbsp;</div>
-      <h5 class="option-title">Color</h5>
-      <div class="option">
-        <div class="color-item" style="  background-color: blue;"><i class="fa-solid fa-check"></i>
-        </div>
-        <div class="color-item" style="background-color: green;">&nbsp;</div>
-        <div class="color-item" style="background-color: red;">&nbsp;</div>
-      </div>
-      <h5 class="option-title">Size</h5>
-      <div class="option">
-        <div class="size-item">Large</div>
-        <div class="size-item">Medium</div>
-        <div class="size-item">Small</div>
+      <div class="options_container">
+
+
       </div>
       <div class="divider">&nbsp;</div>
       <div class="payment">
         <span>157$</span>
         <div class="add_to_cart">Add To Card</div>
         <a class='go-product-page' href="">
-          <div class="add_to_cart go_product">Go T Produt Page</div>
+          <div class="add_to_cart go_product">Produt Page</div>
 
         </a>
       </div>
     </div>
   </div>
-</div>
 
 
-{% javascript %}
+  {% javascript %}
 
-const product_anchors = document.getElementsByClassName('full-unstyled-link');
-const go_product_page = document.querySelector('.go-product-page');
-const product_container = document.querySelector('.product_container')
-const mini_product = document.querySelector('.mini-product')
-const close_btn = document.querySelector('.close i');
-// <!-- product element here  -->
-const pdt_img = document.querySelector('.media img');
-const pdt_title = document.querySelector('.mini-product .text_box .title');
-const pdt_description = document.querySelector('.mini-product .description');
-const pdt_price = document.querySelector('.mini-product .payment span');
+  const product_anchors = document.getElementsByClassName('full-unstyled-link');
+  const go_product_page = document.querySelector('.go-product-page');
+  const product_container = document.querySelector('.product_container')
+  const mini_product = document.querySelector('.mini-product')
+  const close_btn = document.querySelector('.close i');
+  //
+  <!-- product element here  -->
+  const pdt_img = document.querySelector('.media img');
+  const pdt_title = document.querySelector('.mini-product .text_box .title');
+  const pdt_description = document.querySelector('.mini-product .description');
+  const pdt_price = document.querySelector('.mini-product .payment span');
+  const options_container = document.querySelector('.mini-product .options_container');
 
-function close_mini_product() {
-product_container.style.display = 'none'
-mini_product.style.display = 'none'
-}
-
-
-async function open_mini_product(href) {
-product_container.style.display = 'flex'
-mini_product.style.display = 'flex'
-
-// set product data
-const res = await fetch(href+'.json');
-const productData = await res.json();
-console.log(productData)
-pdt_img.src = productData.product?.image?.src
-pdt_title.innerHTML = productData.product.title;
-pdt_description.innerHTML = productData.product.body_html
-pdt_price.innerHTML = productData.product.variants[0].price + "$"
-go_product_page.href = href
-
-}
-close_mini_product();
-close_btn.addEventListener('click', close_mini_product)
-product_container.addEventListener('click', close_mini_product)
-
-console.dir(product_anchors)
-console.dir(go_product_page)
-
-for (let elm of product_anchors) {
-console.dir(elm)
-const href = elm.href;
-elm.href ="javascript:void(0)"
-elm.addEventListener('click', () => open_mini_product(href))
-}
-
-{% endjavascript %}
+  // variants global variables
+  let option1 = ''
+  let option2 = ''
+  let option3 = ''
 
 
-{% stylesheet %}
-
-.product_container{
-width:100%;
-height: 150vw;
-display:none;
-justify-content:center;
-align-items:center;
-position:absolute;
-z-index:10;
-background: #646464c2;
-cursor:pointer
-
-}
-.mini-product {
-background-color: white;
-display: none;
-flex-direction: row;
-height: 500px;
-width: 50%;
-top: -32%;
-bottom: 0;
-margin: auto;
-position: absolute;
-left: 0;
-right: 0;
-
-}
-.mini-product .media {
-height: 100%;
-width: 100%;
-}
-
-.mini-product .text_box {
-height: 100%;
-width: 70%;
-background-color: white;
-padding: 10px;
-}
-
-.mini-product .description {
-margin-bottom: 1rem;
-font-size: 1.5rem;
-opacity: 0.4;
-font-family: inherit;
-}
-.mini-product .option {
-display: flex;
-flex-direction: row;
-}
-
-.color-item {
-height: 30px;
-width: 30px;
-border-radius: 100px;
-margin: 4px;
-border: 1px solid whitesmoke;
-display: flex;
-cursor: pointer;
-}
-.color-item i {
-color: aliceblue;
-margin: auto;
-}
-
-.mini-product .size-item {
-border: 1.4px solid #00000052;
-padding: 7px 25px;
-font-size: 13px;
-border-radius: 5px;
-margin: 4px;
-cursor: pointer;
-}
-.mini-product .size-item:hover{
-background-color: #96969617;
-
-}
-.divider {
-border-top: 1px solid #bbb;
-width: 97%;
-margin-bottom: 2rem;
-opacity: 0.4;
-clear:both
-}
-
-.mini-product .payment {
-display: flex;
-align-items: center;
-
-}
-.go-product-page{
-text-decoration: none;
-}
-.go_product{
-margin:0 7px;
-background-color:black !important
-
-}
-.go_product:hover{
-margin: 0 7px;
-background-color: black !important;
-color: #7e806b !important;
-}
-.add_to_cart {
-background-color: #7dc855;
-padding: 8px 21px;
-color: white;
-font-weight: 530;
-border-radius: 5px;
-cursor: pointer;
-}
-.add_to_cart:hover{
-background-color: #377515;
-
-}
-.payment span {
-font-weight: 600;
-margin: 10px;
-}
-.mini-product .media img {
-width: 100%;
-height: 100%;
-}
-.mini-product .title {
-font-weight: 100;
-font-size: 3.5rem;
-margin-top: 6px;
-margin-bottom: 2rem;
-}
-.option {
-margin-bottom: 0.5rem;
-}
-.option-title {
-margin-bottom: 0.5rem;
-font-size: 14px;
-opacity: 0.5;
-}
-.mini-product .close {
-display: flex;
-align-items: flex-start;
-justify-content: space-between;
-}
-.mini-product .close i {
-font-size: 2.7rem;
-margin: 12px;
-opacity: 0.3;
-cursor: pointer;
-}
-.mini-product .close i:hover {
-font-size: 2.8rem;
-margin: 12px;
-opacity: 0.4;
-}
+  function close_mini_product() {
+  product_container.style.display = 'none'
+  mini_product.style.display = 'none'
+  }
 
 
-@media only screen and (max-width: 770px) {
-.product_container{
+  async function open_mini_product(href) {
+  product_container.style.display = 'flex'
+  mini_product.style.display = 'flex'
+
+  // set product data
+  const res = await fetch(href+'.json');
+  const productData = await res.json();
+  console.log(productData)
+  pdt_img.src = productData.product?.image?.src
+  pdt_title.innerHTML = productData.product.title;
+  pdt_description.innerHTML = productData.product.body_html
+  pdt_price.innerHTML = productData.product.variants[0].price + "$"
+  go_product_page.href = href
+
+  function change_variant(e,option_name,variants){
+  console.log(e.target.innerHTML);
+  console.log(option_name);
+  console.log(productData.product.variants);
+
+  if (option_name === 'Color'){
+        option1 = e.target.innerHTML
+        const elemst = document.querySelectorAll('.color-item');
+        const icon = document.createElement("i");
+        icon.classList.add('fa-solid')
+        icon.classList.add('fa-check')
+        e.target.innerHTML = ''
+        icon.style.color= 'black'
+        e.target.appendChild(icon);
+        elemst.forEach(item =>{
+          if (item !== e.target)
+          {
+          item.innerHTML = "&nbsp"
+          }
+          })
+  }
+  else if(option_name === 'Size')
+  {
+    option2 = e.target.innerHTML
+    const elemst = document.querySelectorAll('.size-item');
+    e.target.style.background = '#00000054';
+    e.target.style.color = 'white';
+    elemst.forEach(item =>{
+      if (item !== e.target)
+      {
+    
+        item.style.background = 'white';
+        item.style.color = 'black';
+      }
+      })
+    
+  }
+  else
+  {
+    option3 = e.target.innerHTML
+
+
+  }
+
+ 
+
+  }
+
+  // set product options;
+  options_container.innerHTML = '';
+
+  productData.product.options.forEach(el=>{
+  console.log(el)
+  const option_title = document.createElement("h5");
+  const option = document.createElement("div");
+  option.classList.add('option')
+  option_title.classList.add('option-title')
+  option_title.innerHTML = el.name;
+
+  options_container.appendChild(option_title)
+  options_container.appendChild(option)
+
+
+  el.values.forEach(val =>
+  {
+
+  if(el.name == "Color")
+  {
+  const color_item = document.createElement("div");
+  option.appendChild(color_item);
+  color_item.classList.add('color-item')
+  color_item.style.backgroundColor = val
+  color_item.innerHTML = "&nbsp";
+  if (val === productData.product.variants[0].option1 || val === productData.product.variants[0].option2)
+  {
+
+  const icon = document.createElement("i");
+  icon.classList.add('fa-solid')
+  icon.classList.add('fa-check')
+  color_item.innerHTML = ''
+  icon.style.color= 'black'
+  color_item.appendChild(icon);
+
+  }
+  color_item.addEventListener('click', (e)=>change_variant(e, 'Color'))
+  }
+
+  else
+  {
+  const size_item = document.createElement("div");
+  option.appendChild(size_item);
+  size_item.classList.add('size-item')
+  size_item.innerHTML = val
+  if (val === productData.product.variants[0].option1 || val === productData.product.variants[0].option2)
+  {
+
+  size_item.style.background = '#00000054';
+  size_item.style.color = 'white';
+
+  }
+  size_item.addEventListener('click', (e)=>change_variant(e, 'Size'))
+
+  }
+  })
+
+
+
+  })
+
+  }
+  close_mini_product();
+  close_btn.addEventListener('click', close_mini_product)
+  //product_container.addEventListener('click', close_mini_product)
+
+  console.dir(product_anchors)
+  console.dir(go_product_page)
+
+  for (let elm of product_anchors) {
+  console.dir(elm)
+  const href = elm.href;
+  elm.href ="javascript:void(0)"
+  elm.addEventListener('click', () => open_mini_product(href))
+  }
+
+  {% endjavascript %}
+
+
+  {% stylesheet %}
+
+  .product_container{
+  width:100%;
+  height: 150vw;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  position:absolute;
+  z-index:10;
+  background: #646464c2;
+  cu
+
+  }
+  .mini-product {
+  background-color: white;
+  display: none;
+  flex-direction: row;
+  height: 500px;
+  width: 50%;
+  top: -32%;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  }
+  .mini-product .media {
+  height: 100%;
+  width: 100%;
+  }
+
+  .mini-product .text_box {
+  height: 100%;
+  width: 70%;
+  background-color: white;
+  padding: 10px;
+  }
+
+  .mini-product .description {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  font-family: inherit;
+  }
+  .mini-product .option {
+  display: flex;
+  flex-direction: row;
+  }
+
+  .color-item {
+  height: 30px;
+  width: 30px;
+  border-radius: 100px;
+  margin: 4px;
+  border: 1px solid whitesmoke;
+  display: flex;
+  cursor: pointer;
+  }
+  .color-item i {
+  color: aliceblue;
+  margin: auto;
+  }
+
+  .mini-product .size-item {
+  border: 1.4px solid #00000052;
+  padding: 7px 25px;
+  font-size: 13px;
+  border-radius: 5px;
+  margin: 4px;
+  cursor: pointer;
+  }
+  .mini-product .size-item:hover{
+  background-color: #96969617;
+
+  }
+  .divider {
+  border-top: 1px solid #bbb;
+  width: 97%;
+  margin-bottom: 2rem;
+  opacity: 0.4;
+  clear:both
+  }
+
+  .mini-product .payment {
+  display: flex;
+  align-items: center;
+
+  }
+  .go-product-page{
+  text-decoration: none;
+  }
+  .go_product{
+  margin:0 7px;
+  background-color:black !important
+
+  }
+  .go_product:hover{
+  margin: 0 7px;
+  background-color: black !important;
+  color: #7e806b !important;
+  }
+  .add_to_cart {
+  background-color: #7dc855;
+  padding: 8px 21px;
+  color: white;
+  font-weight: 530;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size:13px
+  }
+  .add_to_cart:hover{
+  background-color: #377515;
+
+  }
+  .payment span {
+  font-weight: 600;
+  margin: 10px;
+  }
+  .mini-product .media img {
+  width: 100%;
+  height: 100%;
+  }
+  .mini-product .title {
+  font-weight: 100;
+  font-size: 3.5rem;
+  margin-top: 6px;
+  margin-bottom: 2rem;
+  }
+  .option {
+  margin-bottom: 0.5rem;
+  }
+  .option-title {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  opacity: 0.5;
+  }
+  .mini-product .close {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  }
+  .mini-product .close i {
+  font-size: 2.7rem;
+  margin: 12px;
+  opacity: 0.3;
+  cursor: pointer;
+  }
+  .mini-product .close i:hover {
+  font-size: 2.8rem;
+  margin: 12px;
+  opacity: 0.4;
+  }
+
+
+  @media only screen and (max-width: 770px) {
+
+  .product_container{
   height: 500%;
-  
-}
-.mini-product {
-display: flex;
-flex-direction: column;
-width: auto;
-height: 849px;
-top: 13%;
-margin: 10% auto;
 
-}
-.mini-product .media {
-order: 2;
-height: 66%;
-}
-.mini-product .text_box {
-width: auto;
-order: 1;
-padding: 20px;
-}
+  }
+  .mini-product {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 849px;
+  top: 13%;
+  margin: 10% auto;
 
-}
+  }
+  .add_to_cart{
+  font-size: 11px;
+  }
+  .mini-product .media {
+  order: 2;
+  height: 66%;
+  }
+  .mini-product .text_box {
+  width: auto;
+  order: 1;
+  padding: 20px;
+  }
 
-{% endstylesheet %}
+  }
+
+  {% endstylesheet %}
