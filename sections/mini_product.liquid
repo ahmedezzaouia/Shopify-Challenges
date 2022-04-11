@@ -1,0 +1,194 @@
+<div class="mini-product">
+    <div class="media"><img
+            src="https://i5.walmartimages.com/asr/321589d5-3d17-4fc5-8e24-5766122bbae4_1.3ac5ad2cb98f2c50b4ab0a91907143c8.jpeg"
+            alt=""></div>
+    <div class="text_box">
+        <div class="close">
+
+            <h2 class="title">Beats EP</h2>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <p class="description">In publishing and graphic design, Lorem ipsum is a placeholder text commonly
+            used
+            to demonstrate the visual form of a document or a typeface without relying on meaningful
+            content.
+            Lorem ipsum may be used as a placeholder before the final copy is available.</p>
+        <div class="divider"></div>
+        <h5 class="option-title">Color</h5>
+        <div class="option">
+            <div class="color-item" style="  background-color: blue;"><i class="fa-solid fa-check"></i>
+            </div>
+            <div class="color-item" style="  background-color: green;"></div>
+            <div class="color-item" style="  background-color: red;"></div>
+        </div>
+        <h5 class="option-title">Size</h5>
+        <div class="option">
+            <div class="size-item">Large</div>
+            <div class="size-item">Medium</div>
+            <div class="size-item">Small</div>
+        </div>
+        <div class="divider"></div>
+        <div class="payment">
+            <span>157$</span>
+            <div class="add_to_cart">Add To Card</div>
+        </div>
+    </div>
+</div>
+
+{% stylesheet %}
+ 
+  .backdrop {
+    background-color: gray;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    opacity: 0.3;
+  }
+  
+  .mini-product {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    height: 40%;
+    width: 40%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index:10
+  }
+  .mini-product .media {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .mini-product .text_box {
+    height: 100%;
+    width: 70%;
+    background-color: white;
+  }
+  
+  .mini-product .description {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    opacity: 0.4;
+    font-family: inherit;
+  }
+  .mini-product .option {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .color-item {
+    height: 30px;
+    width: 30px;
+    border-radius: 100px;
+    margin: 4px;
+    border: 1px solid whitesmoke;
+    display: flex;
+    cursor: pointer;
+  }
+  .color-item i {
+    color: aliceblue;
+    margin: auto;
+  }
+  
+  .mini-product .size-item {
+    border: 1.4px solid #00000052;
+    padding: 7px 25px;
+    font-size: 13px;
+    border-radius: 5px;
+    margin: 4px;
+    cursor: pointer;
+  }
+  .mini-product .size-item:hover{
+    background-color: #96969617;
+  
+  }
+  .divider {
+    border-top: 1px solid #bbb;
+    width: 97%;
+    margin-bottom: 2rem;
+    opacity: 0.4;
+  }
+  
+  .mini-product .payment {
+    display: flex;
+    align-items: center;
+  
+  }
+  .add_to_cart {
+    background-color: #7dc855;
+    padding: 8px 21px;
+    color: white;
+    font-weight: 530;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .add_to_cart:hover{
+    background-color: #377515;
+  
+  }
+  .payment span {
+    font-weight: 600;
+    margin: 10px;
+  }
+  .mini-product .media img {
+    width: 100%;
+    height: 100%;
+  }
+  .mini-product .title {
+    font-weight: 100;
+    font-size: 2.5rem;
+    margin-top: 6px;
+    margin-bottom: 2rem;
+  }
+  .option {
+    margin-bottom: 0.5rem;
+  }
+  .option-title {
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+    opacity: 0.5;
+  }
+  .mini-product .close {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .mini-product .close i {
+    font-size: 1.5rem;
+    margin: 12px;
+    opacity: 0.3;
+    cursor: pointer;
+  }
+  .mini-product .close i:hover {
+    font-size: 1.6rem;
+    margin: 12px;
+    opacity: 0.4;
+  }
+  
+  @media only screen and (max-width: 770px) {
+    .mini-product {
+      display: flex;
+      flex-direction: column;
+      width: auto;
+      height: 55%;
+      margin: 10% auto;
+  
+    }
+    .mini-product .media {
+      order: 2;
+      height: 66%;
+    }
+    .mini-product .text_box {
+      width: auto;
+      order: 1;
+      padding: 20px;
+    }
+  }
+  
+{% endstylesheet %}

@@ -1,0 +1,429 @@
+<section class="video-section">
+    <div class="video-container">
+        <div class="video-overlay"><span></span></div>
+            <video autoplay loop muted>
+              <source src="{{section.settings.video_link}}" type="video/mp4">
+            </video>
+    </div>
+
+    <div class="video-content">
+        <div class="text_container">
+            <h1>{{section.settings.header_text}}</h1>
+            <!-- this tag is like <p>content</p> -->
+            {{section.settings.paragraph_text}}
+            <a href="{{section.settings.btn_link}}">
+                <button>{{section.settings.btn_text}}</button>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ************************* CSS Section *********************** -->
+
+{% style %}
+.show-header{
+  display:flex;
+
+}
+.hide-header{
+  display:none;
+
+}
+.video-section {
+    position: relative;
+    width: 100%;
+    height: {{section.settings.video_height}}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    {% if section.settings.video_link == nil %}
+      
+    background:url("https://eu.vibram.com/on/demandware.static/-/Sites-VibramEU-Library/default/dwda073688/video-placeholder.png") 
+    {% endif %}
+  }
+  
+  .video-container {
+    justify-content: center;
+    align-items: center;
+  }
+  .video-container video {
+    object-fit: cover;
+    <!-- width: 100vw; -->
+   
+  }
+  .video-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: {{section.settings.overlay-bg_color}};
+    width: 100%;
+    height: 100%;
+    opacity: {{section.settings.overlay_size}};
+  }
+
+  .video-content {
+    /* background-color: rgb(221, 92, 17); */
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
+  .video-content h1 {
+    margin: 0.5rem;
+    font-family: {{section.settings.heading_font.family}}, {{section.settings.heading_font.fallback_families }};
+    font-style:{{section.settings.heading_font.style}};
+    font-size: {{section.settings.heading_font_size}}px;
+    color:{{section.settings.heading_color}};
+    /* background-color: violet; */
+    width: 100%;
+    text-align: {{section.settings.content_alignement}};
+  }
+  .text_container {
+    width: {{section.settings.text_block_size}}%;
+    opacity: 0.8;
+    margin: auto;
+    <!-- background: yellowgreen; -->
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem;
+    {% if section.settings.reset_xy == true %}
+    margin-left: {{section.settings.y_margin}}rem;
+    margin-top: {{section.settings.x_margin}}rem; 
+    {% endif %}
+  }
+  .video-content p {
+    margin: 0.3rem;
+    line-height: 1.5;
+    font-size: {{section.settings.paragraph_font_size}}px;
+    font-family: {{section.settings.paragraph_font.family}}, {{section.settings.paragraph_font.fallback_families }};
+    font-style:{{section.settings.paragraph_font.style}};
+    text-align:{{section.settings.content_alignement}};
+    color:{{section.settings.paragraph_color}}
+
+  }
+  .video-content a {
+    text-decoration: none;
+    /* background-color: bisque; */
+    width: 100%;
+    display: flex;
+    margin: 1rem;
+    justify-content:{{section.settings.content_alignement}};
+  }
+  .video-content button {
+  display:{% if section.settings.show_btn == true %}block {% else %} none{% endif %};
+    margin: 0.8rem;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    padding: 15px;
+    line-height: normal;
+    font-family: {{section.settings.btn_font.family}}, {{section.settings.btn_font.fallback_families }};
+    font-style:{{section.settings.btn_font.style}};
+    color:{{section.settings.btn_title_color}};
+    border-radius:{{section.settings.btn_border_rdx}}px;
+    background: {{section.settings.btn_bg_color}};
+    border: 1px solid {{section.settings.btn_border-color}};
+   
+  }
+  .video-content a :hover{
+   background:#261e1459
+  }
+
+    /* ************************ Large Screen ******************* */
+  @media only screen and (min-width: 1900px) {
+    .video-container video {
+      width: 100vw;
+    }
+  }
+  /* ************************ Mobile Design ******************* */
+  @media only screen and (max-width: 770px) {
+    .video-section {
+      height: 400px;
+    }
+   
+    .video-content h1 {
+      font-size: 2.68rem;
+    }
+    .video-content p {
+      line-height: 1.5;
+      font-size: 1.3rem;
+    }
+    .video-content a{
+    margin: 1.2rem;
+    padding: 3px;
+    }
+    .video-content button {
+   
+      width: 115px;
+      font-size: 12px;
+      padding: 8px;
+      margin:0;
+    }
+    .text_container {
+      width: 80%;
+      margin: auto;
+      margin-top: 78px;
+    }
+  }
+  
+{% endstyle %}
+
+<!-- ************************** Schema *********************** -->
+
+{% schema %}
+{
+   "name": "Hero Video",
+   "settings": [
+                        {
+                          "type": "url",
+                          "id": "video_link",
+                          "label": "Video link"
+                        },
+                        {
+                          "type": "color_background",
+                          "id": "overlay-bg_color",
+                          "label": "Overlay Background Color",
+                          "default": "linear-gradient(#ffffff, #000000)"
+                        },
+                        {
+                          "type": "range",
+                          "id": "video_height",
+                          "min": 0,
+                          "max": 1500,
+                          "step": 15,
+                          "unit": "px",
+                          "label": "Section Height",
+                          "default": 750
+                        },
+                        {
+                          "type": "range",
+                          "id": "overlay_size",
+                          "min": 0,
+                          "max": 1,
+                          "step": 0.1,
+                          "unit": "px",
+                          "label": "Overlay Size",
+                          "default": 0
+                        },
+                        {
+                            "type": "range",
+                            "id": "text_block_size",
+                            "min": 10,
+                            "max": 100,
+                            "step": 5,
+                            "unit": "%",
+                            "label": "Text Block Width",
+                            "default": 50
+                        },
+                        {
+                          "type": "text",
+                          "id": "header_text",
+                          "label": "Heading",
+                          "default": "Fresh finds"
+                        },
+                        {
+                          "type": "richtext",
+                          "id": "paragraph_text",
+                          "label": "Paragraph",
+                          "default":"<p>up your collection for spring with these unique pieces! Shop the latest styles from a variety of designers here at Local Eclectic.</p>"
+                        },
+                        {
+                          "type": "checkbox",
+                          "id": "show_btn",
+                          "label": "Show Button",
+                          "default": true
+                        },
+                        {
+                          "type": "url",
+                          "id": "btn_link",
+                          "label": "Button link"
+                        },
+                        {
+                          "type": "text",
+                          "id": "btn_text",
+                          "label": "Button Title",
+                          "default": "Shop Now"
+                        },
+                        {
+                          "type": "checkbox",
+                          "id": "reset_xy",
+                          "label": "Use Margins",
+                          "info":"you can use margins X and Y to align the text content any place you want inside the video ",
+                          "default": false
+                        },   
+                        {
+                          "type": "range",
+                          "id": "x_margin",
+                          "min": 0,
+                          "max": 90,
+                          "step": 1,
+                          "unit": "px",
+                          "label": "Vertical Margin",
+                          "default": 27
+                        },
+                        {
+                          "type": "range",
+                          "id": "y_margin",
+                          "min": 0,
+                          "max": 90,
+                          "step": 1,
+                          "unit": "px",
+                          "label": "Horizontal Margin",
+                          "default": 45
+                        }, 
+                        {
+                          "type": "select",
+                          "id": "content_alignement",
+                          "label": "Text Position",
+                          "options": [
+                            {
+                              "value": "left",
+                              "label": "Left"
+                            },
+                            {
+                              "value": "center",
+                              "label": "Center"
+                            },
+                            {
+                              "value": "end",
+                              "label": "Right"
+                            }
+                          ],
+                          "default": "center"
+                        },
+                        {
+                          "type": "header",
+                          "content": "Fonts And Colors"
+                        },
+                        {
+                          "type": "font_picker",
+                          "id": "heading_font",
+                          "label": "Heading font",
+                          "default": "helvetica_n4"
+                        },
+                        {
+                          "type": "range",
+                          "id": "heading_font_size",
+                          "min": 8,
+                          "max": 100,
+                          "step": 1,
+                          "unit": "px",
+                          "label": "Heading Size",
+                          "default": 50
+                        },
+                        {
+                          "type": "color",
+                          "id": "heading_color",
+                          "label": "Heading Color",
+                          "default": "#FFFFFF"
+                        },                        
+                        {
+                          "type": "font_picker",
+                          "id": "paragraph_font",
+                          "label": "Paragraph font",
+                          "default": "helvetica_n4"
+                        },
+                        {
+                          "type": "range",
+                          "id": "paragraph_font_size",
+                          "min": 8,
+                          "max": 100,
+                          "step": 1,
+                          "unit": "px",
+                          "label": "Paragraph Size",
+                          "default": 20
+                        },
+                        {
+                          "type": "color",
+                          "id": "paragraph_color",
+                          "label": "Paragraph Color",
+                          "default": "#FFFFFF"
+                        },
+                        {
+                          "type": "font_picker",
+                          "id": "btn_font",
+                          "label": "Button font",
+                          "default": "helvetica_n4"
+                        },
+                        {
+                          "type": "color",
+                          "id": "btn_title_color",
+                          "label": "Button Title Color",
+                          "default": "#FFFFFF"
+                        },
+                        {
+                          "type": "color",
+                          "id": "btn_border-color",
+                          "label": "Button Border Color",
+                          "default": "#FFFFFF"
+                        },
+                        {
+                          "type": "color_background",
+                          "id": "btn_bg_color",
+                          "label": "Button Background",
+                          "default": "transparent"
+                        },
+                        {
+                          "type": "number",
+                          "id": "btn_border_rdx",
+                          "label": "Button Radius",
+                          "default": 20
+                        }
+
+                        
+                        
+           
+     
+   ],
+   "presets": [
+     {
+       "name": "Hero Video"
+     }
+   ]
+}
+{% endschema %}
+
+
+
+  
+<script >
+
+  const header = document.querySelector('header');
+  const videoSection = document.querySelector('.video-section');
+
+window.addEventListener('scroll',()=>{
+  console.log(window.pageYOffset)
+  if(window.pageYOffset >= 600)
+  {
+    header.style.display = 'none';
+  }
+  else
+  {
+    header.style.display = 'flex';
+
+  }
+})
+  
+</script>
+
+<!-- ***************** style for header ************** -->
+{% style %}
+{% if  template.name == "index" %}
+header{
+  background: transparent;
+  position: absolute;
+}
+header span,header svg{
+  color:white !important
+}
+.header-wrapper{
+  border:none
+}
+{% endif %}
+{% endstyle %}
