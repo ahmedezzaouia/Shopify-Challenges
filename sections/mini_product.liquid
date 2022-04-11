@@ -58,7 +58,7 @@ mini_product.style.display = 'none'
 }
 async function open_mini_product(href) {
   console.log(href)
- const res =  await fetch(href);
+ const res =  await fetch(href+'.json');
  const data = await res.json();
  console.log(data)
   go_product_page.href = href
