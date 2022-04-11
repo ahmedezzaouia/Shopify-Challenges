@@ -35,36 +35,47 @@
       <div class="payment">
         <span>157$</span>
         <div class="add_to_cart">Add To Card</div>
+       <a class= 'go-product-page' href="">
+         <div class="add_to_cart go_product">Go T Produt Page</div>
+
+       </a> 
       </div>
     </div>
   </div>
 </div>
+
+
 {% javascript %}
-  
-
-
 
 const product_anchors = document.getElementsByClassName('full-unstyled-link');
+const go_product_page = document.querySelector('.go-product-page');
 const product_container = document.querySelector('.product_container')
 const mini_product = document.querySelector('.mini-product')
 const close_btn = document.querySelector('.close i');
 function close_mini_product() {
-  product_container.style.display = 'none'
-  mini_product.style.display = 'none'
+product_container.style.display = 'none'
+mini_product.style.display = 'none'
 }
-function open_mini_product() {
-  product_container.style.display = 'flex'
-  mini_product.style.display = 'flex'
+async function open_mini_product(href) {
+  console.log(href)
+ const res =  await fetch(href);
+ const data = await res.json();
+ console.log(data)
+  go_product_page.href = href
+product_container.style.display = 'flex'
+mini_product.style.display = 'flex'
 }
 close_mini_product();
 close_btn.addEventListener('click', close_mini_product)
 
 console.dir(product_anchors)
+console.dir(go_product_page)
 
 for (let elm of product_anchors) {
-  console.dir(elm)
-  elm.href ="javascript:void(0)"
-  elm.addEventListener('click', () => open_mini_product())
+console.dir(elm)
+const href = elm.href;
+elm.href ="javascript:void(0)"
+elm.addEventListener('click', () => open_mini_product(href))
 }
 
 {% endjavascript %}
@@ -157,6 +168,19 @@ clear:both
 display: flex;
 align-items: center;
 
+}
+.go-product-page{
+  text-decoration: none;
+}
+.go_product{
+  margin:0 7px;
+  background-color:black !important
+  
+}
+.go_product:hover{
+     margin: 0 7px;
+    background-color: black !important;
+    color: #7e806b !important;
 }
 .add_to_cart {
 background-color: #7dc855;
