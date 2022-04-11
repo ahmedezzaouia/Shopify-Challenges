@@ -1,14 +1,17 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
   integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="product_container">
   <div class="mini-product">
-    <div class="media"><img
+    <div class="media">
+      <img
         src="https://i5.walmartimages.com/asr/321589d5-3d17-4fc5-8e24-5766122bbae4_1.3ac5ad2cb98f2c50b4ab0a91907143c8.jpeg"
-        alt=""></div>
+        alt="">
+    </div>
     <div class="text_box">
       <div class="close">
-
         <h2 class="title">Beats EP</h2>
         <i class="fa-solid fa-xmark"></i>
       </div>
@@ -35,10 +38,10 @@
       <div class="payment">
         <span>157$</span>
         <div class="add_to_cart">Add To Card</div>
-       <a class= 'go-product-page' href="">
-         <div class="add_to_cart go_product">Go T Produt Page</div>
+        <a class='go-product-page' href="">
+          <div class="add_to_cart go_product">Go T Produt Page</div>
 
-       </a> 
+        </a>
       </div>
     </div>
   </div>
@@ -52,21 +55,36 @@ const go_product_page = document.querySelector('.go-product-page');
 const product_container = document.querySelector('.product_container')
 const mini_product = document.querySelector('.mini-product')
 const close_btn = document.querySelector('.close i');
+// <!-- product element here  -->
+const pdt_img = document.querySelector('.media img');
+const pdt_title = document.querySelector('.mini-product .text_box .title');
+const pdt_description = document.querySelector('.mini-product .description');
+const pdt_price = document.querySelector('.mini-product .payment span');
+
 function close_mini_product() {
 product_container.style.display = 'none'
 mini_product.style.display = 'none'
 }
+
+
 async function open_mini_product(href) {
-  console.log(href)
- const res =  await fetch(href+'.json');
- const data = await res.json();
- console.log(data)
-  go_product_page.href = href
 product_container.style.display = 'flex'
 mini_product.style.display = 'flex'
+
+// set product data
+const res = await fetch(href+'.json');
+const productData = await res.json();
+console.log(productData)
+pdt_img.src = productData.product?.image?.src
+pdt_title.innerHTML = productData.product.title;
+pdt_description.innerHTML = productData.product.body_html
+pdt_price.innerHTML = productData.product.variants[0].price + "$"
+go_product_page.href = href
+
 }
 close_mini_product();
 close_btn.addEventListener('click', close_mini_product)
+product_container.addEventListener('click', close_mini_product)
 
 console.dir(product_anchors)
 console.dir(go_product_page)
@@ -84,29 +102,30 @@ elm.addEventListener('click', () => open_mini_product(href))
 {% stylesheet %}
 
 .product_container{
-width:100vw;
-min-height: 100vh;
+width:100%;
+height: 150vw;
 display:none;
 justify-content:center;
 align-items:center;
 position:absolute;
 z-index:10;
-background: #6464643d;
+background: #646464c2;
+cursor:pointer
 
 }
 .mini-product {
 background-color: white;
 display: none;
 flex-direction: row;
-height: 47%;
+height: 500px;
 width: 50%;
-<!-- top: 0;
+top: -32%;
 bottom: 0;
 margin: auto;
 position: absolute;
 left: 0;
 right: 0;
-z-index:10 -->
+
 }
 .mini-product .media {
 height: 100%;
@@ -117,6 +136,7 @@ width: 100%;
 height: 100%;
 width: 70%;
 background-color: white;
+padding: 10px;
 }
 
 .mini-product .description {
@@ -170,17 +190,17 @@ align-items: center;
 
 }
 .go-product-page{
-  text-decoration: none;
+text-decoration: none;
 }
 .go_product{
-  margin:0 7px;
-  background-color:black !important
-  
+margin:0 7px;
+background-color:black !important
+
 }
 .go_product:hover{
-     margin: 0 7px;
-    background-color: black !important;
-    color: #7e806b !important;
+margin: 0 7px;
+background-color: black !important;
+color: #7e806b !important;
 }
 .add_to_cart {
 background-color: #7dc855;
@@ -235,11 +255,16 @@ opacity: 0.4;
 
 
 @media only screen and (max-width: 770px) {
+.product_container{
+  height: 500%;
+  
+}
 .mini-product {
 display: flex;
 flex-direction: column;
 width: auto;
-height: 55%;
+height: 849px;
+top: 13%;
 margin: 10% auto;
 
 }
