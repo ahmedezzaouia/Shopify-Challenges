@@ -39,53 +39,53 @@
     </div>
   </div>
 </div>
+{% javascript %}
+  
 
 
 
-<script>
-  const product_btns = document.querySelectorAll('a[href^="/products"]');
-  const product_container = document.querySelector('.product_container')
-  const mini_product = document.querySelector('.mini-product')
-  const close_btn = document.querySelector('.close i');
-  function close_mini_product() {
-    product_container.style.display = 'none'
-    mini_product.style.display = 'none'
-  }
-  function open_mini_product() {
-    product_container.style.display = 'flex'
-    mini_product.style.display = 'flex'
-  }
-  close_mini_product();
-  close_btn.addEventListener('click', close_mini_product)
-  product_btns.forEach(el => {
-    el.removeAttribute('href');
-    el.addEventListener('click', open_mini_product)
-  })
+const product_anchors = document.getElementsByClassName('full-unstyled-link');
+const product_container = document.querySelector('.product_container')
+const mini_product = document.querySelector('.mini-product')
+const close_btn = document.querySelector('.close i');
+function close_mini_product() {
+  product_container.style.display = 'none'
+  mini_product.style.display = 'none'
+}
+function open_mini_product() {
+  product_container.style.display = 'flex'
+  mini_product.style.display = 'flex'
+}
+close_mini_product();
+close_btn.addEventListener('click', close_mini_product)
 
-</script>
+console.dir(product_anchors)
+
+for (let elm of product_anchors) {
+  console.dir(elm)
+  elm.href ="javascript:void(0)"
+  elm.addEventListener('click', () => open_mini_product())
+}
+
+{% endjavascript %}
 
 
 {% stylesheet %}
-.backdrop {
-background-color: gray;
-width: 100vw;
-height: 100vh;
-position: absolute;
-opacity: 0.3;
-}
+
 .product_container{
 width:100vw;
-height:100vh;
-display:flex;
+min-height: 100vh;
+display:none;
 justify-content:center;
 align-items:center;
 position:absolute;
 z-index:10;
 background: #6464643d;
+
 }
 .mini-product {
 background-color: white;
-display: flex;
+display: none;
 flex-direction: row;
 height: 47%;
 width: 50%;
