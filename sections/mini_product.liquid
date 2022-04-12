@@ -28,7 +28,7 @@
       <div class="divider">&nbsp;</div>
       <div class="payment">
         <span>157$</span>
-        <div class="add_to_cart">Add To Card</div>
+        <div class="add_to_cart cart">Add To Card</div>
         <a class='go-product-page' href="">
           <div class="add_to_cart go_product">Produt Page</div>
 
@@ -40,7 +40,9 @@
 
   {% javascript %}
 let options = ["", "", ""]
+let current_variant = null
 const product_anchors = document.getElementsByClassName('full-unstyled-link');
+const add_to_cart = document.querySelector('div.add_to_cart.cart');
 const go_product_page = document.querySelector('.go-product-page');
 const product_container = document.querySelector('.product_container')
 const mini_product = document.querySelector('.mini-product')
@@ -54,6 +56,34 @@ const options_container = document.querySelector('.mini-product .options_contain
 
 // variants global variables
 
+function add_cart()
+{
+  let formData = {
+    'items': [{
+     'id': current_variant.id,
+     'quantity': 1
+     }]
+   };
+   
+   fetch(window.Shopify.routes.root + 'cart/add.js', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(formData)
+   })
+   .then(response => {
+    response.json().then(()=> location.reload());
+    
+
+   })
+   .catch((error) => {
+     console.error('Error:', error);
+   });
+   
+}
+
+add_to_cart.addEventListener('click', add_cart)
 
 function close_mini_product() {
     product_container.style.display = 'none'
@@ -89,6 +119,7 @@ async function open_mini_product(href) {
             console.log('options = ', options)
             if (counter === productData.product.options.length) {
                 // this is the selected variant
+                current_variant = vrt;
                 pdt_price.innerHTML = vrt.price + "$"
                 const image  =  productData.product.images.find(img=>img.id === vrt.image_id)
                 if(image)
