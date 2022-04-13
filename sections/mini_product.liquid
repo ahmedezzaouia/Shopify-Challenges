@@ -7,7 +7,7 @@
   <div class="mini-product">
     <div class="media">
       <img
-        src="https://i5.walmartimages.com/asr/321589d5-3d17-4fc5-8e24-5766122bbae4_1.3ac5ad2cb98f2c50b4ab0a91907143c8.jpeg"
+        src=""
         alt="">
     </div>
     <div class="text_box">
@@ -99,14 +99,19 @@ async function open_mini_product(href) {
     const res = await fetch(href + '.json');
     const productData = await res.json();
     // init variant 
+
     current_variant = productData.product.variants[0]
-   
     const vrt_image  =  productData.product.images.find(img=>img.id === current_variant.image_id)
-    pdt_img.src = vrt_image.src
-    pdt_title.innerHTML = productData.product.title;
-    pdt_description.innerHTML = productData.product.body_html
+    if(vrt_image)
+      pdt_img.src = vrt_image.src
+    else
+      pdt_img.src = productData.product.image.src
+
+      
     
     pdt_price.innerHTML = current_variant.price + "$"
+    pdt_title.innerHTML = productData.product.title;
+    pdt_description.innerHTML = productData.product.body_html
     go_product_page.href = href
 
     function select_variant() {
@@ -257,8 +262,8 @@ for (let elm of product_anchors) {
   align-items:center;
   position:absolute;
   z-index:10;
-  background: #646464c2;
-  cu
+  background: #000000cf;
+
 
   }
   .mini-product {
