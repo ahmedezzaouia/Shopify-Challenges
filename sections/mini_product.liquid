@@ -73,6 +73,7 @@ function add_cart()
      body: JSON.stringify(formData)
    })
    .then(response => {
+    response.json().then(()=> location.reload());
     
 
    })
@@ -99,11 +100,13 @@ async function open_mini_product(href) {
     const productData = await res.json();
     // init variant 
     current_variant = productData.product.variants[0]
-    console.log(productData)
-    pdt_img.src = productData.product?.image?.src
+   
+    const vrt_image  =  productData.product.images.find(img=>img.id === current_variant.image_id)
+    pdt_img.src = vrt_image.src
     pdt_title.innerHTML = productData.product.title;
     pdt_description.innerHTML = productData.product.body_html
-    pdt_price.innerHTML = productData.product.variants[0].price + "$"
+    
+    pdt_price.innerHTML = current_variant.price + "$"
     go_product_page.href = href
 
     function select_variant() {
@@ -132,7 +135,6 @@ async function open_mini_product(href) {
 
 
     }
-
     function change_variant(e, option_name, variants) {
 
         console.log(e.target.innerHTML);
@@ -146,7 +148,7 @@ async function open_mini_product(href) {
             icon.classList.add('fa-solid')
             icon.classList.add('fa-check')
             e.target.innerHTML = ''
-            icon.style.color = 'black'
+            icon.style.color = '#52ac33'
             e.target.appendChild(icon);
             elemst.forEach(item => {
                 if (item !== e.target) {
@@ -174,7 +176,6 @@ async function open_mini_product(href) {
 
 
     }
-
     // set product options;
     options_container.innerHTML = '';
 
@@ -204,7 +205,7 @@ async function open_mini_product(href) {
                     icon.classList.add('fa-solid')
                     icon.classList.add('fa-check')
                     color_item.innerHTML = ''
-                    icon.style.color = 'black'
+                    icon.style.color = '#52ac33'
                     color_item.appendChild(icon);
 
                 }
@@ -307,7 +308,7 @@ for (let elm of product_anchors) {
   cursor: pointer;
   }
   .color-item i {
-  color: aliceblue;
+  color: green;
   margin: auto;
   }
 
