@@ -98,6 +98,8 @@ async function open_mini_product(href) {
     // set product data
     const res = await fetch(href + '.json');
     const productData = await res.json();
+    // init variant 
+    current_variant = productData.product.variants[0]
     console.log(productData)
     pdt_img.src = productData.product?.image?.src
     pdt_title.innerHTML = productData.product.title;
