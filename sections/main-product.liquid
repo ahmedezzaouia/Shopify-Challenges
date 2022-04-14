@@ -588,6 +588,21 @@
     });
   });
 </script>
+  
+  
+  {% style %} 
+
+{% if product.handle == 'mattress-1' %}
+    .add_to_cart:hover{
+
+        background-color:{{section.settings.cart_btn_hover}} !important
+
+    }
+
+{% endif %}
+
+{% endstyle %}
+
 
 {%- if first_3d_model -%}
   <script type="application/json" id="ProductJSON-{{ product.id }}">
@@ -1010,6 +1025,12 @@
     }
   ],
   "settings": [
+   {
+      "type": "color",
+      "id": "cart_btn_hover",
+      "label": "Add To Cart Hover",
+      "default": "#000000"
+    },
     {
       "type": "checkbox",
       "id": "enable_sticky_info",
