@@ -8,6 +8,7 @@
           "settings": {
             "em_email_inline_button_display": false,
             "em_email_float_button_display": false,
+            "em_email_btn_all_display": false,
             "em_email_button_color": "#ffffff",
             "em_email_button_hover_color": "#202223",
             "em_email_button_background": "#333333",
@@ -20,7 +21,6 @@
             "border_radius": 2,
             "em_email_button_font_family": "inherit",
             "em_email_button_font_weight": "inherit",
-            "em_email_float_button_top": 0,
             "em_show_powered_by": "block",
             "em_email_popup_btn_value": "EMAIL ME WHEN AVAILABLE",
             "em_email_popup_header_text": "EMAIL ME WHEN AVAILABLE",
@@ -66,6 +66,12 @@
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {
+          }
+        },
+        "8b6d27f3-0ac7-40a0-b5f0-743c4ba75219": {
+          "type": "shopify:\/\/apps\/recurring-billing-by-recharge\/blocks\/subscription-widget\/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {
+            "product": "{{product}}"
           }
         },
         "buy_buttons": {
@@ -130,6 +136,7 @@
         "price",
         "variant_picker",
         "quantity_selector",
+        "8b6d27f3-0ac7-40a0-b5f0-743c4ba75219",
         "buy_buttons",
         "description",
         "collapsible-row-0",
@@ -139,6 +146,7 @@
         "share"
       ],
       "settings": {
+        "cart_btn_hover": "#000000",
         "enable_sticky_info": true,
         "gallery_layout": "stacked",
         "media_size": "large",
