@@ -8,9 +8,7 @@
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
 
 <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
-{% for option in selling_plan.options %}
-                        {{ option.name }} : {{ option.value }}
-                      {% endfor %}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
