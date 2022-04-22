@@ -8,6 +8,7 @@
     {% for selling_plan in group.selling_plans %}
     <input type="radio" {%- if forloop.first %} checked="checked"{% endif %} name="selling_plan" value="{{ selling_plan.id }}" id="selling_plan_{{ selling_plan.id }}">
     <label for="selling_plan_{{ selling_plan.id }}">{{ selling_plan.name }}</label><br>
+  <h1>{{ selling_plan.id }}</h1>
     {% endfor %}
   </fieldset>
   {% endfor %}
