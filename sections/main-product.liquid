@@ -423,7 +423,7 @@
                             <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
                           </svg>
                         </div>
-                        {% for allocation in variant.selling_plan_allocations %}
+                        {% for allocation in product.variant.selling_plan_allocations %}
         <option value="{{ allocation.selling_plan.id }}">
           {{ allocation.selling_plan.name }}
         </option>
