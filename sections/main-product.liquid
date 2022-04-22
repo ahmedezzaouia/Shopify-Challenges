@@ -1139,3 +1139,35 @@
   ]
 }
 {% endschema %}
+
+  
+  <script>
+  function add_cart()
+{
+  let formData = {
+    'items': [{
+     'id': 42643094896889,
+     'quantity': 1,
+      selling_plan: 3567255801   
+     }]
+   };
+   
+   fetch(window.Shopify.routes.root + 'cart/add.js', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(formData)
+   })
+   .then(response => {
+    response.json().then(()=> location.reload());
+    
+
+   })
+   .catch((error) => {
+     console.error('Error:', error);
+   });
+   
+}
+
+  </script>
