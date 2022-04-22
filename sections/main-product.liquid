@@ -8,7 +8,9 @@
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
 
 <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
-
+{% for option in selling_plan.options %}
+                        {{ option.name }} : {{ option.value }}
+                      {% endfor %}
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -423,9 +425,7 @@
                             <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
                           </svg>
                         </div>
-                      {% for option in selling_plan.options %}
-  {{ option.name }} : {{ option.value }}
-{% endfor %}
+                      
                     </button>
                     {%- if block.settings.show_dynamic_checkout -%}
                       {{ form | payment_button }}
