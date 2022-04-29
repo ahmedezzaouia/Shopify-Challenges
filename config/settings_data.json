@@ -83,6 +83,11 @@
         "type": "main-password-footer",
         "settings": {
         }
+      },
+      "mini_product": {
+        "type": "mini_product",
+        "settings": {
+        }
       }
     },
     "content_for_index": [
@@ -115,6 +120,12 @@
           "bottom_left": 0,
           "btn_border_color": "#7DB0C2",
           "btn_background_color": "transparent"
+        }
+      },
+      "855628211100114053": {
+        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {
         }
       }
     }
