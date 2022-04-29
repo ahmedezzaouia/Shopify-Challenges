@@ -417,8 +417,7 @@
                           {%- else -%}
                             {{ 'products.product.sold_out' | t }}
                           {%- endif -%}
-                                  <a class="klaviyo-bis-trigger" href="#">Notify Me When Available</a>
-
+                          
                         </span>
                         <div class="loading-overlay__spinner hidden">
                           <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -427,6 +426,7 @@
                         </div>
                       
                     </button>
+                    <a class="klaviyo-bis-trigger" href="#">Notify Me When Available</a>
                     {%- if block.settings.show_dynamic_checkout -%}
                       {{ form | payment_button }}
                     {%- endif -%}
