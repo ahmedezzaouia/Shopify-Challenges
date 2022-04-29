@@ -430,10 +430,10 @@
                     {%- if block.settings.show_dynamic_checkout -%}
                       {{ form | payment_button }}
                     {%- endif -%}
-                    <div>
-                                          <a class="klaviyo-bis-trigger" href="#">Notify Me When Available</a>
+                  
+                     <a class="klaviyo-bis-trigger" href="#">Notify Me When Available</a>
 
-                    </div>
+                 
 
                   </div>
                 {%- endform -%}
@@ -600,6 +600,18 @@
   
   {% style %} 
 
+  
+  .klaviyo-bis-trigger
+  {
+    padding: 14px 80px;
+    border: 1px solid;
+    width: 100%;
+    font-size: 14px;
+    text-decoration: none;
+    background: black;
+    color: white;
+    border-radius: 4px;
+  }
 	.stock_out_btn
   {
   	display:none;
