@@ -408,8 +408,8 @@
                     <button
                       type="submit"
                       name="add"
-                      class="add_to_cart product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
-                    {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                      class="add_to_cart product-form__submit button button--full-width {% if product.selected_or_first_available_variant.available == false %}stock_out_btn{% endif %} {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+                    
                     >
                         <span>
                           {%- if product.selected_or_first_available_variant.available -%}
@@ -600,7 +600,10 @@
   
   {% style %} 
 
-
+	.stock_out_btn
+  {
+  	display:none;
+  }
     .add_to_cart:hover{
 
         background-color:{{section.settings.cart_btn_hover}} !important
