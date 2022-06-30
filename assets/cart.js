@@ -70,6 +70,7 @@ class CartItems extends HTMLElement {
         return response.text();
       })
       .then((state) => {
+      console.log(state);
         const parsedState = JSON.parse(state);
         this.classList.toggle('is-empty', parsedState.item_count === 0);
         const cartFooter = document.getElementById('main-cart-footer');
