@@ -1243,13 +1243,8 @@ id :{{product.selected_selling_plan.id}}
       
  		 {%endfor%}
       <br/>
-      {%for prices in selling_plan.price%}
-  
-       
-            prices: {{prices.value}} 
-       
-      
- 	{%endfor%}
+      {{selling_plan.checkout_charge.value}}
+      {{selling_plan.checkout_charge.type}}
       
    		<br/>
       {% endfor %}
