@@ -1228,10 +1228,15 @@ id :{{product.selected_selling_plan.id}}
    {% for group in product.selling_plan_groups %}
     <fieldset>
       <legend>{{ group.name}}</legend>
-       
       {% for selling_plan in group.selling_plans %}
         <input type="radio" name="selling_plan" value="{{ selling_plan.id }}">
         {{ selling_plan.name }}
+      
+       {%for option in selling_plan.options%}
+  
+    optin_name: {{option.name}}  optin_value: {{option.value}} optin_pos: {{option.position}} 
+  {%endfor%}
+   <br/>
       {% endfor %}
     </fieldset>
     {% endfor %}
