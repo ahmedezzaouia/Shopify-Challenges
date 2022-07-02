@@ -1205,7 +1205,7 @@
 name : {{product.selling_plan_allocation.price}}
  <br/>
   
-  {%for option in product.selected_selling_plan.options%}
+  {%for option in product.selling_plan_group .options%}
   
     optin_name: {{option.name}}  optin_value: {{option.value}} optin_pos: {{option.position}} 
   {%endfor%}
