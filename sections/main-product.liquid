@@ -1234,6 +1234,7 @@ id :{{product.selected_selling_plan.id}}
       
       {% for selling_plan in group.selling_plans %}
           ***********************
+      selling plae id = {{ selling_plan.id }}
         <input type="radio" name="selling_plan" value="{{ selling_plan.id }}">
         {{ selling_plan.name }}
 
