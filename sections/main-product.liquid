@@ -1233,6 +1233,7 @@ id :{{product.selected_selling_plan.id}}
       <legend>{{ group.name}}</legend>
       
       {% for selling_plan in group.selling_plans %}
+          ***********************
         <input type="radio" name="selling_plan" value="{{ selling_plan.id }}">
         {{ selling_plan.name }}
 
@@ -1260,5 +1261,5 @@ id :{{product.selected_selling_plan.id}}
       
       {% endfor %}
     </fieldset>
-   *******************
+
     {% endfor %}
