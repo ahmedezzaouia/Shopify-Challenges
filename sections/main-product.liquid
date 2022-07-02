@@ -1225,6 +1225,8 @@ id :{{product.selected_selling_plan.id}}
   
   
   <br/>
+  
+  
    {% for group in product.selling_plan_groups %}
   
     <fieldset>
@@ -1246,11 +1248,11 @@ id :{{product.selected_selling_plan.id}}
  		 {%endfor%}
       
       <br/>
-      {%for box in selling_plan.price_adjustments%}
+      		{%for box in selling_plan.price_adjustments%}
   
-            save: {{box.value}}
+            value: {{box.value}}
               <br/>
-            save: {{box.value_type}}
+            type: {{box.value_type}}
       
  		 {%endfor%}
       
