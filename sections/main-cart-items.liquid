@@ -331,3 +331,17 @@
   ]
 }
 {% endschema %}
+
+
+<p class="cart-attribute__field">
+      <label for="long-custom-text">Long Custom Text</label>
+      <textarea 
+        required 
+        form="cart" 
+        class="required"
+        id="long-custom-text" 
+        name="attributes[Long Custom Text]"
+      >
+        {{ cart.attributes["Long Custom Text"] }}
+      </textarea>
+</p>
