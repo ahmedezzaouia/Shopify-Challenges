@@ -1246,7 +1246,14 @@ id :{{product.selected_selling_plan.id}}
  		 {%endfor%}
       
       <br/>
-      price : {{selling_plan.price_adjustment.value}}
+      {%for box in selling_plan.price_adjustments%}
+  
+            save: {{box.value}}
+              <br/>
+            save: {{box.value_type}}
+      
+ 		 {%endfor%}
+      
    		<br/>
       
       {% endfor %}
