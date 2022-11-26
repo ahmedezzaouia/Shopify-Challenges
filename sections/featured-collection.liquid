@@ -11,10 +11,10 @@
 import Alpine from 'alpinejs'
  
 Alpine.store('darkMode', {
-    on: false,
+    isGlobal: "global state",
  
     toggle() {
-        this.on = ! this.on
+        console.log("hy Alpine.js >>>> ")
     }
 })
  
