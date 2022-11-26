@@ -6,7 +6,15 @@
 
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
-
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('darkMode', {
+            isGlobal: 'yes',
+ 
+            
+        })
+    })
+</script>
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -234,12 +242,3 @@
 {% endschema %}
 
 
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('darkMode', {
-            isGlobal: 'yes',
- 
-            
-        })
-    })
-</script>
