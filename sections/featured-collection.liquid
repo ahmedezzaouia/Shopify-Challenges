@@ -8,11 +8,15 @@
 <noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
 <script>
     document.addEventListener('alpine:init', () => {
-        isGlobal: "global state",
+        Alpine.store('darkMode', {
+           isGlobal: "global state",
  
     toggle() {
         console.log("hy Alpine.js >>>> ")
     }
+ 
+            
+        })
     })
 </script>
 {%- style -%}
