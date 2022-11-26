@@ -8,13 +8,17 @@
 <noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
 <script>
  
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('darkMode', {
-            isGlobal: 'yes',
+import Alpine from 'alpinejs'
  
-            
-        })
-    })
+Alpine.store('darkMode', {
+    on: false,
+ 
+    toggle() {
+        this.on = ! this.on
+    }
+})
+ 
+Alpine.start()
 
 </script>
 {%- style -%}
