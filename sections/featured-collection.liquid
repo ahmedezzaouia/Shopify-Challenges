@@ -9,7 +9,7 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.store('darkMode', {
-           isGlobal: "global state",
+           isGlobal: '{{ cart.item_count}}',
  
     sayHi() {
         console.log("hy Alpine.js >>>> ")
