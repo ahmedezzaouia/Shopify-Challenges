@@ -237,11 +237,9 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.store('darkMode', {
-            isGlobal: false,
+            isGlobal: 'yes',
  
-            toggle() {
-                this.isGlobal = ! this.isGlobal
-            }
+            
         })
     })
 </script>
