@@ -7,13 +7,17 @@
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
 <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('darkMode', {
-            isGlobal: 'yes',
+  <script>
+import Alpine from 'alpinejs'
  
-            
-        })
-    })
+Alpine.store('darkMode', {
+    isGlobal: 'false',
+ 
+   
+})
+ 
+Alpine.start()
+</script>
 </script>
 {%- style -%}
   .section-{{ section.id }}-padding {
