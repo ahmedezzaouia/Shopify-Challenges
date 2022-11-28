@@ -306,7 +306,21 @@
 </script>
     
 {% render 'spurit_ros_theme_snippet' %}
-  <script > alert("block broswer")</script>
+    <script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('darkMode', {
+           isGlobal: '{{ cart.item_count}}',
+ 
+    sayHi() {
+        console.log("hy Alpine.js >>>> ")
+    }
+ 
+            
+        })
+    })
+    alert("block broswer")
+</script>
   <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
 </body>
 </html>
