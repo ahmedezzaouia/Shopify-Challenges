@@ -30,7 +30,16 @@
     {% render 'meta-tags' %}
 
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    {{ content_for_header }}
+    
+    {% capture modified_content_for_header %}{{ content_for_header }}{% endcapture %}
+    <!-- If you have a lot of templates you are checking, a case/when using template.name might be appropriate -->
+    {{ modified_content_for_header }}    
+
+
+      {% for script in modified_content_for_header %}
+      the script is = {{ script }}
+      {% endfor %}
+
     {% section 'mini_product' %}
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
