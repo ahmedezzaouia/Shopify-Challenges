@@ -35,7 +35,8 @@
     <!-- If you have a lot of templates you are checking, a case/when using template.name might be appropriate -->
     {{ modified_content_for_header }}    
 
-
+      {% assign hwllo = modified_content_for_header  %}
+      {{ hwllo }}
       {% for script in modified_content_for_header %}
       the script is = {{ script }}
       {% endfor %}
