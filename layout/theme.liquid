@@ -52,7 +52,9 @@
     
   
 
-
+      <script>
+        console.log({{ content_for_header | json}})
+      </script>
     
     {% style %}
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
