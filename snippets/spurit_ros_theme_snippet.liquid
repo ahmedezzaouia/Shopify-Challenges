@@ -61,7 +61,6 @@ border-color: #CCCCCC;
 border-width: 1px;
 border-radius: 4px;
 text-decoration: none;
-background-color: rgba(255, 255, 255, 0);
 }
 .spurit-ros__widget [data-editable="discount"] {
 color: #000000;
@@ -82,6 +81,10 @@ text-decoration: none;
 background-color: #080808;
 background-image: linear-gradient(45deg, transparent 50%, #080808 50%), linear-gradient(135deg, #080808 50%, transparent 50%);
 }
+.spurit-ros__widget .spurit-ros__option input[type="radio"]:checked + .spurit-ros__option-inner {
+border-radius: 4px;
+background-color: rgba(8, 8, 8, 0.03);
+}
 .spurit-ros__widget [data-editable="additional-text"] {
 color: #666666;
 font-size: 15px;
@@ -89,6 +92,10 @@ font-style: normal;
 font-family: inherit;
 font-weight: normal;
 text-decoration: none;
+}
+.spurit-ros__widget .spurit-ros__option input[type="radio"] + .spurit-ros__option-inner {
+border-radius: 4px;
+background-color: rgba(255, 255, 255, 0);
 }
 
 </style>
