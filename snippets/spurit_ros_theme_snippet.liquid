@@ -1,106 +1,85 @@
+{% assign appConfig = shop.metafields.spurit_ros %}
+{% assign appName = appConfig.app_name %}
+
 <script>
-  if(typeof(Spurit) === 'undefined'){
+if (typeof(Spurit) === 'undefined') {
     var Spurit = {};
-  }
-  if(!Spurit.RecurringOrderAndSubscriptions){
-    Spurit.RecurringOrderAndSubscriptions = {};
-  }
-  if(!Spurit.RecurringOrderAndSubscriptions.snippet){
-    Spurit.RecurringOrderAndSubscriptions.snippet = {};
-  }
-  if(!Spurit.RecurringOrderAndSubscriptions.snippet.products){
-      Spurit.RecurringOrderAndSubscriptions.snippet.products = {};
-  }
-  Spurit.RecurringOrderAndSubscriptions.snippet.shopId = '4373';
-  Spurit.RecurringOrderAndSubscriptions.snippet.shopHash = '079c9401bed575bbec2335b4b3494034';
-  Spurit.RecurringOrderAndSubscriptions.snippet.hasCartLabel = true;
-  Spurit.RecurringOrderAndSubscriptions.snippet.appInstalled = '2022-07-01 17:09:51';
-  Spurit.RecurringOrderAndSubscriptions.snippet.customerEmail = '{{ customer.email }}';
+}
+if (!Spurit.{{ appName }}) {
+    Spurit.{{ appName }} = {};
+}
+if (!Spurit.{{ appName }}.snippet) {
+    Spurit.{{ appName }}.snippet = {};
+}
+if (!Spurit.{{ appName }}.snippet.products) {
+    Spurit.{{ appName }}.snippet.products = {};
+}
 
-  if (typeof(Spurit.globalSnippet) === 'undefined' || Object.keys(Spurit.globalSnippet).length === 0){
-      Spurit.globalSnippet = {
-          shop_currency: '{{ shop.currency }}',
-          money_format: '{{ shop.money_format | replace: "'", '"' }}',
-          cart: {{ cart | json }},
-          customer_id: '{{ customer.id }}'
-      };
-  }
+Spurit.{{ appName }}.snippet.shopId = '{{ appConfig.shop.id }}'
+Spurit.{{ appName }}.snippet.shopHash = '{{ appConfig.shop.hash }}';
+Spurit.{{ appName }}.snippet.customerEmail = '{{ customer.email }}';
+Spurit.{{ appName }}.snippet.appInstalled = '{{ appConfig.shop.created_at }}';
+Spurit.{{ appName }}.snippet.hasCartLabel = '{{ appConfig.shop.has_cart_label }}';
 
-  {% for line_item in cart.items %}
-  {% render 'spurit_ros_product_details_snippet', product: line_item.product %}
-  {% endfor %}
+Spurit.{{ appName }}.settings = {};
+Spurit.{{ appName }}.settings.rules = [];
+Spurit.{{ appName }}.settings.settings = {{ appConfig.settings }};
+Spurit.{{ appName }}.settings.timezone = '{{ appConfig.shop.timezone }}';
+Spurit.{{ appName }}.settings.isShopEligible = '{{ appConfig.shop.is_eligible }}';
 
-  {% if product %}
-  {% render 'spurit_ros_product_details_snippet', product: product %}
-  {% endif %}
-  {% if products %}
-  {% render 'spurit_ros_products_list_snippet', products: products %}
-  {% endif %}
+{{ appConfig.rules }}.forEach(rule => Spurit.{{ appName }}.settings.rules.push(JSON.parse(rule)));
 
-  {% assign pageType = template | split: '.' | first %}
-  {% if pageType == 'product' %}
-  {% render 'spurit_ros_product_details_snippet', product: product %}
-  {% elsif pageType == 'search' %}
-  {% paginate search.results %}
-  {% render 'spurit_ros_products_list_snippet', products: search.results %}
-  {% endpaginate %}
-  {% elsif pageType == 'collection' %}
-  {% paginate collection.products %}
-  {% render 'spurit_ros_products_list_snippet', products: collection.products %}
-  {% endpaginate %}
-  {%endif%}
+if (typeof(Spurit.globalSnippet) === 'undefined' || Object.keys(Spurit.globalSnippet).length === 0){
+    Spurit.globalSnippet = {
+        shop_currency: '{{ shop.currency }}',
+        money_format: '{{ shop.money_format | replace: "'", '"' }}',
+        cart: {{ cart | json }},
+        customer_id: '{{ customer.id }}',
+        customer_email: '{{ customer.email }}',
+    };
+}
+
+{% for line_item in cart.items %}
+    Spurit.{{ appName }}.snippet.products['{{ product.id }}'] = {{ line_item.product | json }};
+    Spurit.{{ appName }}.snippet.products['{{ product.id }}'].collections = {{ line_item.product.collections | map: 'id' | json }};
+{% endfor %}
+
+{% if product %}
+    Spurit.{{ appName }}.snippet.products['{{ product.id }}'] = {{ product | json }};
+    Spurit.{{ appName }}.snippet.products['{{ product.id }}'].collections = {{ product.collections | map: 'id' | json }};
+{% endif %}
+{% if products %}
+    {% for product in products %}
+        Spurit.{{ appName }}.snippet.products['{{ product.id }}'] = {{ product | json }};
+        Spurit.{{ appName }}.snippet.products['{{ product.id }}'].collections = {{ product.collections | map: 'id' | json }};
+    {% endfor %}
+{% endif %}
+
+{% assign pageType = template | split: '.' | first %}
+{% if pageType == 'product' %}
+    Spurit.{{ appName }}.snippet.products['{{ product.id }}'] = {{ product | json }};
+    Spurit.{{ appName }}.snippet.products['{{ product.id }}'].collections = {{ product.collections | map: 'id' | json }};
+{% elsif pageType == 'search' %}
+    {% paginate search.results %}
+        {% for product in search.results %}
+            Spurit.{{ appName }}.snippet.products['{{ product.id }}'] = {{ product | json }};
+            Spurit.{{ appName }}.snippet.products['{{ product.id }}'].collections = {{ product.collections | map: 'id' | json }};
+        {% endfor %}
+    {% endpaginate %}
+{% elsif pageType == 'collection' %}
+    {% paginate collection.products %}
+        {% for product in collection.products %}
+            Spurit.{{ appName }}.snippet.products['{{ product.id }}'] = {{ product | json }};
+            Spurit.{{ appName }}.snippet.products['{{ product.id }}'].collections = {{ product.collections | map: 'id' | json }};
+        {% endfor %}
+    {% endpaginate %}
+{% endif %}
 </script>
 
 <style>
-.spurit-ros__widget [data-editable="general"] {
-color: #080808;
-font-size: 16px;
-font-style: normal;
-font-family: inherit;
-font-weight: normal;
-border-color: #CCCCCC;
-border-width: 1px;
-border-radius: 4px;
-text-decoration: none;
-}
-.spurit-ros__widget [data-editable="discount"] {
-color: #000000;
-font-size: 16px;
-font-style: normal;
-font-family: inherit;
-font-weight: normal;
-text-decoration: none;
-}
-.spurit-ros__widget [data-editable="main-text"] {
-color: #080808;
-font-size: 16px;
-font-style: normal;
-font-family: inherit;
-font-weight: normal;
-border-color: #080808;
-text-decoration: none;
-background-color: #080808;
-background-image: linear-gradient(45deg, transparent 50%, #080808 50%), linear-gradient(135deg, #080808 50%, transparent 50%);
-}
-.spurit-ros__widget .spurit-ros__option input[type="radio"]:checked + .spurit-ros__option-inner {
-border-radius: 4px;
-background-color: rgba(8, 8, 8, 0.03);
-}
-.spurit-ros__widget [data-editable="additional-text"] {
-color: #666666;
-font-size: 15px;
-font-style: normal;
-font-family: inherit;
-font-weight: normal;
-text-decoration: none;
-}
-.spurit-ros__widget .spurit-ros__option input[type="radio"] + .spurit-ros__option-inner {
-border-radius: 4px;
-background-color: rgba(255, 255, 255, 0);
-}
-
+{{ appConfig.design_css }}
 </style>
 
-<script src="https://cdn-spurit.com/all-apps/spurit.global-2.x.min.js" async></script>
-<script src="https://cdn-spurit.com/shopify-apps/recurring-order-and-subscriptions/common.js" async></script>
-<link href="https://cdn-spurit.com/shopify-apps/recurring-order-and-subscriptions/common.css" rel="stylesheet" type="text/css" media="all">
+<script src="{{ appConfig.assets.cdn_lib_url }}/spurit.global-3.x.min.js" async></script>
+<script src="{{ appConfig.assets.common_js }}" async></script>
+<link href="{{ appConfig.assets.common_css }}" rel="stylesheet" type="text/css" media="all">
