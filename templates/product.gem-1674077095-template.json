@@ -4,7 +4,7 @@
       "type": "main-product",
       "blocks": {
         "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a": {
-          "type": "shopify:\/\/apps\/back-in-stock-restock-alerts\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
+          "type": "shopify:\/\/apps\/cw-back-in-stock-restock-alert\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
           "settings": {
           }
         },
