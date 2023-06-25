@@ -4,33 +4,8 @@
       "type": "main-product",
       "blocks": {
         "bdbe9e07-eff6-4fdf-a3d2-41a529cd884a": {
-          "type": "shopify:\/\/apps\/back-in-stock-restock-alerts\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
+          "type": "shopify:\/\/apps\/cw-back-in-stock-restock-alert\/blocks\/product-restore-email\/b190bced-3b7b-47da-a05f-6ea4821c3a77",
           "settings": {
-            "em_email_inline_button_display": false,
-            "em_email_float_button_display": false,
-            "em_email_btn_all_display": false,
-            "em_email_button_color": "#ffffff",
-            "em_email_button_hover_color": "#202223",
-            "em_email_button_background": "#333333",
-            "em_email_button_hover_background": "#444444",
-            "em_email_button_border_color": "rgba(0,0,0,0)",
-            "em_email_button_hover_animation": false,
-            "em_email_button_content": "EMAIL ME WHEN AVAILABLE",
-            "font_size": 14,
-            "margin_top": 10,
-            "border_radius": 2,
-            "em_email_button_font_family": "inherit",
-            "em_email_button_font_weight": "inherit",
-            "em_show_powered_by": "block",
-            "em_email_popup_btn_value": "EMAIL ME WHEN AVAILABLE",
-            "em_email_popup_header_text": "EMAIL ME WHEN AVAILABLE",
-            "em_email_popup_footer_text": "We will notify you when this product is back in stock. We will not share your email address with anybody.",
-            "em_email_popup_validation_text": "* Your email address is invalid.",
-            "em_email_popup_subscribed_text": "* You have already subscribed this product.",
-            "em_email_popup_name_placeholder_text": "Your name",
-            "em_email_popup_placeholder_text": "Email address...",
-            "em_email_success_frame_title": "Successfully subscribed!",
-            "em_email_success_frame_content": "We will send you an email when this product is back in stock."
           }
         },
         "vendor": {
@@ -69,7 +44,7 @@
           }
         },
         "8b6d27f3-0ac7-40a0-b5f0-743c4ba75219": {
-          "type": "shopify:\/\/apps\/recurring-billing-by-recharge\/blocks\/subscription-widget\/371eed76-0b44-4869-9813-730372ea378e",
+          "type": "shopify:\/\/apps\/recharge-subscriptions\/blocks\/subscription-widget\/371eed76-0b44-4869-9813-730372ea378e",
           "settings": {
             "product": "{{product}}"
           }
@@ -244,12 +219,30 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "settings": {
+      }
+    },
+    "shogun-below": {
+      "type": "shogun-below",
+      "settings": {
+      }
+    },
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {
+      }
     }
   },
   "order": [
+    "shogun-helper",
+    "shogun-above",
     "main",
     "image-with-text",
     "multicolumn",
-    "product-recommendations"
+    "product-recommendations",
+    "shogun-below"
   ]
 }
