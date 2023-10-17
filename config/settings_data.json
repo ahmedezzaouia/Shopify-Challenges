@@ -127,6 +127,12 @@
         "disabled": false,
         "settings": {
         }
+      },
+      "10274677211107884116": {
+        "type": "shopify:\/\/apps\/shipping-rates-calculator-plus\/blocks\/app-embed-block\/de9da91b-8d51-4359-81df-b8b0288464c7",
+        "disabled": false,
+        "settings": {
+        }
       }
     }
   },
