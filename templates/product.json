@@ -234,6 +234,11 @@
       "type": "shogun-helper",
       "settings": {
       }
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {
+      }
     }
   },
   "order": [
@@ -243,6 +248,7 @@
     "image-with-text",
     "multicolumn",
     "product-recommendations",
-    "shogun-below"
+    "shogun-below",
+    "shogun-optimizer"
   ]
 }
