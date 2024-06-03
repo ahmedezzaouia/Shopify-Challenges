@@ -7,6 +7,10 @@ This file can be re-written at any time.
   {{product.metafields.shogun.head}}
 {% endif %}
 
+{% if collection and collection.metafields.shogun.head %}
+  {{collection.metafields.shogun.head}}
+{% endif %}
+
 {% if page and page.metafields.shogun.head %}
   {{page.metafields.shogun.head}}
 {% endif %}
@@ -14,21 +18,4 @@ This file can be re-written at any time.
 {% if article and article.metafields.shogun.head %}
   {{article.metafields.shogun.head}}
 {% endif %}
-
-{%- capture page_id -%}
-  {%- if page -%}
-    {{ page.id }}
-  {%- elsif blog -%}
-    {{ blog.id }}
-  {%- elsif article -%}
-    {{ article.id }}
-  {%- elsif product -%}
-    {{ product.id }}
-  {%- elsif collection -%}
-    {{ collection.id  | default: 'all'}}
-  {%- else -%}
-    index
-  {%- endif -%}
-{%- endcapture -%}
-<meta name="shogun-data" content="page_type={{request.page_type}}, page_id={{page_id | strip}}, site_id=149a13eb-c0a1-48d9-9673-83c8a6ffb121">
 
